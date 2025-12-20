@@ -10,9 +10,7 @@
     "preview": {
       "distribution": "internal"
     },
-    "production": {
-      "allowDirtyWorktree": true
-    }
+    "production": {}
   },
   "submit": {
     "production": {}

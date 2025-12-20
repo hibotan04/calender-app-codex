@@ -17,16 +17,21 @@ export const Header: React.FC<HeaderProps> = ({
   onLeftPress,
   onRightPress,
   rightIcon,
+  leftIcon,
   showBack = false,
 }) => {
   return (
     <View style={styles.container}>
       <View style={styles.leftContainer}>
-        {showBack && (
+        {showBack ? (
           <TouchableOpacity onPress={onLeftPress} style={styles.iconButton}>
             <ChevronLeft size={24} color={colors.text.primary} strokeWidth={1.5} />
           </TouchableOpacity>
-        )}
+        ) : leftIcon ? (
+          <TouchableOpacity onPress={onLeftPress} style={styles.iconButton}>
+            {leftIcon}
+          </TouchableOpacity>
+        ) : null}
       </View>
 
       <View style={styles.centerContainer}>
