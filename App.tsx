@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Modal, TextInput, Alert, Image, KeyboardAvoidingView, Platform, Dimensions, ActivityIndicator, FlatList, Keyboard } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { ChevronLeft, ChevronRight, X, Image as ImageIcon, Trash2, Settings, Moon, Sun, FileText, Image as LucideImage, Check, Cloud, Lock, User } from 'lucide-react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as MediaLibrary from 'expo-media-library';
 import { StatusBar } from 'expo-status-bar';
+import { ActionSheetIOS, ActivityIndicator, Alert, Dimensions, Image, Modal, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, FlatList, Keyboard, KeyboardAvoidingView } from 'react-native';
+import { Image as ExpoImage } from 'expo-image';
 import { useFonts } from 'expo-font';
 import * as FileSystem from 'expo-file-system/legacy';
 import { GestureHandlerRootView, GestureDetector, Gesture, Directions } from 'react-native-gesture-handler';
@@ -397,7 +398,7 @@ export default function App() {
   const nextMonth = () => setCurrentDate(new Date(year, month + 1, 1));
 
   const handleDayPress = (day: number) => {
-    const dateKey = `${year}-${month}-${day}`; // Removed extra spaces
+    const dateKey = `${year}-${month + 1}-${day}`; // Fix: 1-indexed month for display/storage
     setSelectedDate(dateKey);
     const existingEntry = entries[dateKey];
     setTempText(existingEntry?.text || "");
@@ -416,25 +417,43 @@ export default function App() {
 
   // === CUSTOM PHOTO PICKER LOGIC ===
   const handlePickImage = async () => {
-    // 1. Request MediaLibrary Permissions
-    const { status } = await MediaLibrary.requestPermissionsAsync();
-    if (status !== 'granted') {
-      Alert.alert("Permission Required", "Please allow access to photos to filter by date.");
+    console.log("handlePickImage called, date:", selectedDate);
+
+    if (!selectedDate) {
+      Alert.alert("Error", "No date selected");
       return;
     }
 
-    if (!selectedDate) return;
-
-    // 2. Calculate Date Range
-    // selectedDate is "YYYY-M-D" (Month is 0-indexed)
-    const [y, m, d] = selectedDate.split('-').map(str => parseInt(str.trim(), 10)); // Robust parsing
-    const startOfDay = new Date(y, m, d, 0, 0, 0).getTime();
-    const endOfDay = new Date(y, m, d, 23, 59, 59).getTime();
-
-    setPickerLoading(true);
-    setIsPhotoPickerOpen(true); // Open Picker Modal
-
     try {
+      // 1. Request MediaLibrary Permissions
+      const { status } = await MediaLibrary.requestPermissionsAsync();
+      console.log("Permission status:", status);
+
+      if (status !== 'granted') {
+        Alert.alert("Permission Required", "Please allow access to photos to filter by date.");
+        return;
+      }
+
+      // 2. Calculate Date Range
+      // selectedDate is "YYYY-M-D" (Month is 1-indexed now)
+      const parts = selectedDate.split('-');
+      const y = parseInt(parts[0].trim(), 10);
+      const m = parseInt(parts[1].trim(), 10) - 1; // Fix: Convert back to 0-indexed for Date
+      const d = parseInt(parts[2].trim(), 10);
+
+      console.log(`Parsing date: Y=${y}, M=${m}, D=${d}`);
+
+      if (isNaN(y) || isNaN(m) || isNaN(d)) {
+        Alert.alert("Error", "Invalid date format: " + selectedDate);
+        return;
+      }
+
+      const startOfDay = new Date(y, m, d, 0, 0, 0).getTime();
+      const endOfDay = new Date(y, m, d, 23, 59, 59).getTime();
+
+      setPickerLoading(true);
+      setIsPhotoPickerOpen(true); // Open Picker Modal
+
       const assets = await MediaLibrary.getAssetsAsync({
         createdAfter: startOfDay,
         createdBefore: endOfDay,
@@ -442,10 +461,20 @@ export default function App() {
         sortBy: MediaLibrary.SortBy.creationTime,
         first: 100,
       });
+
+      console.log("Assets found:", assets.totalCount);
+      // DEBUG: Alert user exactly how many found
+      if (assets.totalCount > 0) {
+        // Optional: Toast or small indicator, but let's assume if >0 it renders.
+        // Alert.alert("Debug", `Found ${assets.totalCount} photos`);
+      } else {
+        // Handled by empty component
+      }
       setPickerPhotos(assets.assets);
+
     } catch (e) {
       console.error(e);
-      Alert.alert("Error", "Could not load photos.");
+      Alert.alert("Error", "Could not load photos: " + (e instanceof Error ? e.message : String(e)));
       setIsPhotoPickerOpen(false);
     } finally {
       setPickerLoading(false);
@@ -455,9 +484,6 @@ export default function App() {
   const handleSelectPhoto = async (asset: MediaLibrary.Asset) => {
     try {
       const assetInfo = await MediaLibrary.getAssetInfoAsync(asset.id);
-      // Use localUri if available, otherwise uri
-      // For standard Image component, uri works. For FileSystem copy, we might need localUri.
-      // We store the URI directly.
       setTempImage(assetInfo.localUri || assetInfo.uri);
       setIsPhotoPickerOpen(false); // Close Picker
     } catch (e) {
@@ -475,8 +501,10 @@ export default function App() {
     }
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true, aspect: [1, 1], quality: 1,
+      allowsEditing: true,
+      quality: 1,
     });
+    console.log("Standard picker result:", result);
     if (!result.canceled) {
       setTempImage(result.assets[0].uri);
     }
@@ -513,8 +541,10 @@ export default function App() {
 
 
   // Helper to render a single day cell
+  // Helper to render a single day cell
   const renderDayCell = (day: number, width: any, aspectRatio: number) => {
-    const dateKey = `${year} -${month} -${day} `;
+    // FIX: Match exact format: YYYY-M-D (No spaces, 1-indexed month)
+    const dateKey = `${year}-${month + 1}-${day}`;
     const entry = entries[dateKey];
     const dynamicStyle = entry?.text ? getDynamicTextStyle(entry.text) : DEFAULT_TEXT_STYLE;
     const len = entry?.text?.length || 0;
@@ -551,7 +581,13 @@ export default function App() {
         <Text style={[styles.dateNumber, dateNumStyle]}>{day}</Text>
         <View style={[styles.imageArea, { backgroundColor: colors.placeholder }]}>
           {entry?.image ? (
-            <Image source={{ uri: entry.image }} style={styles.cellImage} resizeMode="cover" />
+            <ExpoImage
+              source={{ uri: entry.image }}
+              style={styles.cellImage}
+              contentFit="cover"
+              transition={200}
+              cachePolicy="memory-disk"
+            />
           ) : <View style={styles.placeholderContainer} />}
         </View>
         {!isPhotoOnly && (
@@ -761,125 +797,141 @@ export default function App() {
             {isSettingsOpen ? <X size={24} color={colors.text} /> : <Settings size={24} color={colors.text} />}
           </TouchableOpacity>
 
-          {/* Edit Modal (Same) */}
-          <Modal visible={isModalOpen} transparent={true} animationType="fade" onRequestClose={() => setIsModalOpen(false)}>
+          {/* === DIARY ENTRY MODAL (With Embedded Photo Picker) === */}
+          <Modal visible={isModalOpen} transparent={true} animationType="fade" onRequestClose={() => {
+            if (isPhotoPickerOpen) setIsPhotoPickerOpen(false);
+            else setIsModalOpen(false);
+          }}>
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.modalOverlay} keyboardVerticalOffset={0}>
-              <ScrollView ref={scrollViewRef} contentContainerStyle={styles.modalScrollContent} keyboardShouldPersistTaps="handled">
-                <View style={[styles.modalContent, { backgroundColor: colors.modalBg }]}>
+
+              {/* === PHOTO PICKER VIEW (Conditionally Rendered) === */}
+              {isPhotoPickerOpen ? (
+                <View style={[styles.modalContent, { backgroundColor: colors.modalBg, height: '90%', marginTop: 'auto', borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }]}>
+                  {/* Header */}
                   <View style={styles.modalHeader}>
-                    <View style={{ marginBottom: 4 }}>
-                      <Text style={[styles.modalDateTitle, { color: colors.text }]}>
-                        {selectedDate ? new Date(selectedDate).getDate() : ''}
-                        <Text style={[styles.modalDateMonth, { color: colors.subText }]}>
-                          {' '}{selectedDate ? new Date(selectedDate).toLocaleString('en-US', { month: 'short' }) : ''}
-                        </Text>
-                      </Text>
-                    </View>
-                    <TouchableOpacity onPress={() => setIsModalOpen(false)} style={[styles.closeBtn, { backgroundColor: colors.border }]}>
-                      <X size={20} color={colors.text} />
+                    <TouchableOpacity onPress={() => setIsPhotoPickerOpen(false)} style={[styles.closeBtn, { backgroundColor: colors.border, marginRight: 8 }]}>
+                      <ChevronLeft size={20} color={colors.text} />
                     </TouchableOpacity>
-                  </View>
-
-                  <View style={styles.imageSection}>
-                    <TouchableOpacity style={[styles.imageUploadBox, { backgroundColor: colors.inputBg, borderColor: colors.border }]} onPress={handlePickImage} activeOpacity={0.8}>
-                      {tempImage ? (
-                        <>
-                          <Image source={{ uri: tempImage }} style={styles.uploadedImage} resizeMode="cover" />
-                          <View style={styles.imageOverlay}><View style={styles.badge}><Text style={styles.badgeText}>Change</Text></View></View>
-                        </>
-                      ) : (
-                        <>
-                          <ImageIcon size={32} color={colors.subText} style={{ marginBottom: 8 }} />
-                          <Text style={[styles.uploadPlaceholder, { color: colors.subText }]}>Tap to add photo</Text>
-                        </>
-                      )}
-                    </TouchableOpacity>
-                    {tempImage && <TouchableOpacity style={styles.deleteImageBtn} onPress={handleDeleteImage}><Trash2 size={16} color="#FFFFFF" /></TouchableOpacity>}
-                  </View>
-
-                  <View style={styles.inputContainer}>
-                    {(() => {
-                      const LIMIT = 30;
-                      const currentLen = tempText.length;
-                      const remaining = LIMIT - currentLen;
-                      const isOverLimit = remaining < 0;
-                      return (
-                        <>
-                          <TextInput
-                            style={[
-                              styles.textInput,
-                              { backgroundColor: colors.inputBg, color: colors.text, borderColor: isOverLimit ? '#EF4444' : 'transparent', borderWidth: isOverLimit ? 1 : 0 }
-                            ]}
-                            value={tempText}
-                            onChangeText={(text) => setTempText(text)}
-                            placeholder="今日はどんな1日でしたか？"
-                            placeholderTextColor={colors.subText}
-                            multiline={true} blurOnSubmit={false} returnKeyType="default"
-                          />
-                          <Text style={[styles.charCount, { color: isOverLimit ? '#EF4444' : colors.subText }]}>
-                            {isOverLimit ? `${remaining} ` : `${currentLen}/${LIMIT}`}
-                          </Text >
-                        </>
-                      );
-                    })()}
-                  </View >
-                  <TouchableOpacity
-                    onPress={handleSaveEntry}
-                    disabled={tempText.length > 30}
-                    style={[styles.modalSaveBtn, { backgroundColor: colors.accent, opacity: tempText.length > 30 ? 0.5 : 1 }]}
-                  >
-                    <Text style={[styles.modalSaveBtnText, { color: isDarkMode ? '#111827' : '#FFFFFF' }]}>SAVE ENTRY</Text>
-                  </TouchableOpacity>
-                </View>
-              </ScrollView>
-            </KeyboardAvoidingView>
-          </Modal>
-
-          {/* === CUSTOM PHOTO PICKER MODAL === */}
-          <Modal visible={isPhotoPickerOpen} animationType="slide" transparent={true} onRequestClose={() => setIsPhotoPickerOpen(false)}>
-            <View style={styles.modalOverlay}>
-              <View style={[styles.modalContent, { backgroundColor: colors.modalBg, height: '80%', marginTop: 'auto', borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }]}>
-                {/* Header */}
-                <View style={styles.modalHeader}>
-                  <Text style={[styles.modalDateTitle, { color: colors.text, fontSize: 16 }]}>
-                    Photos: {selectedDate}
-                  </Text>
-                  <TouchableOpacity onPress={() => setIsPhotoPickerOpen(false)} style={[styles.closeBtn, { backgroundColor: colors.border }]}>
-                    <X size={20} color={colors.text} />
-                  </TouchableOpacity>
-                </View>
-
-                {/* Content */}
-                {pickerLoading ? (
-                  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <ActivityIndicator size="large" color={colors.accent} />
-                    <Text style={{ marginTop: 10, color: colors.subText }}>Loading photos...</Text>
-                  </View>
-                ) : pickerPhotos.length > 0 ? (
-                  <FlatList
-                    data={pickerPhotos}
-                    keyExtractor={(item) => item.id}
-                    numColumns={3}
-                    renderItem={({ item }) => (
-                      <TouchableOpacity onPress={() => handleSelectPhoto(item)} style={{ flex: 1 / 3, aspectRatio: 1, padding: 2 }}>
-                        <Image source={{ uri: item.uri }} style={{ width: '100%', height: '100%', borderRadius: 4 }} resizeMode="cover" />
-                      </TouchableOpacity>
-                    )}
-                  />
-                ) : (
-                  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
-                    <ImageIcon size={48} color={colors.subText} style={{ marginBottom: 16 }} />
-                    <Text style={{ color: colors.text, fontSize: 16, marginBottom: 8 }}>No photos found for this date.</Text>
-                    <Text style={{ color: colors.subText, textAlign: 'center', marginBottom: 24 }}>
-                      Try selecting one from your full library.
+                    <Text style={[styles.modalDateTitle, { color: colors.text, fontSize: 16, flex: 1 }]}>
+                      Photos: {selectedDate}
                     </Text>
-                    <TouchableOpacity onPress={handleLaunchStandardPicker} style={[styles.modalSaveBtn, { backgroundColor: colors.accent, width: '100%' }]}>
-                      <Text style={[styles.modalSaveBtnText, { color: isDarkMode ? '#111827' : '#FFFFFF' }]}>OPEN FULL LIBRARY</Text>
+                    {/* Open Full Library Button in Header */}
+                    <TouchableOpacity onPress={handleLaunchStandardPicker} style={{ paddingHorizontal: 12, paddingVertical: 6, backgroundColor: colors.accent, borderRadius: 16 }}>
+                      <Text style={{ color: isDarkMode ? '#111827' : '#FFFFFF', fontSize: 12, fontWeight: 'bold' }}>Library</Text>
                     </TouchableOpacity>
                   </View>
-                )}
-              </View>
-            </View>
+
+                  {/* Content */}
+                  {pickerLoading ? (
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                      <ActivityIndicator size="large" color={colors.accent} />
+                      <Text style={{ marginTop: 10, color: colors.subText }}>Loading photos...</Text>
+                    </View>
+                  ) : pickerPhotos.length > 0 ? (
+                    <FlatList
+                      data={pickerPhotos}
+                      style={{ flex: 1 }}
+                      keyExtractor={(item) => item.id}
+                      numColumns={3}
+                      renderItem={({ item }) => (
+                        <TouchableOpacity onPress={() => handleSelectPhoto(item)} style={{ width: '33.33%', aspectRatio: 1, padding: 2 }}>
+                          <ExpoImage
+                            source={{ uri: item.uri }}
+                            style={{ width: '100%', height: '100%', borderRadius: 4, backgroundColor: '#eee' }}
+                            contentFit="cover"
+                            transition={200}
+                          />
+                        </TouchableOpacity>
+                      )}
+                    />
+                  ) : (
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
+                      <ImageIcon size={48} color={colors.subText} style={{ marginBottom: 16 }} />
+                      <Text style={{ color: colors.text, fontSize: 16, marginBottom: 8 }}>No photos found for this date.</Text>
+                      <TouchableOpacity onPress={handleLaunchStandardPicker} style={[styles.modalSaveBtn, { backgroundColor: colors.accent, width: '100%' }]}>
+                        <Text style={[styles.modalSaveBtnText, { color: isDarkMode ? '#111827' : '#FFFFFF' }]}>OPEN FULL LIBRARY</Text>
+                      </TouchableOpacity>
+                    </View>
+                  )}
+                </View>
+              ) : (
+                /* === DIARY FORM VIEW === */
+                <ScrollView ref={scrollViewRef} contentContainerStyle={styles.modalScrollContent} keyboardShouldPersistTaps="handled">
+                  <View style={[styles.modalContent, { backgroundColor: colors.modalBg }]}>
+                    <View style={styles.modalHeader}>
+                      <View style={{ marginBottom: 4 }}>
+                        <Text style={[styles.modalDateTitle, { color: colors.text }]}>
+                          {selectedDate ? new Date(selectedDate).getDate() : ''}
+                          <Text style={[styles.modalDateMonth, { color: colors.subText }]}>
+                            {' '}{selectedDate ? new Date(selectedDate).toLocaleString('en-US', { month: 'short' }) : ''}
+                          </Text>
+                        </Text>
+                      </View>
+                      <TouchableOpacity onPress={() => setIsModalOpen(false)} style={[styles.closeBtn, { backgroundColor: colors.border }]}>
+                        <X size={20} color={colors.text} />
+                      </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.imageSection}>
+                      <TouchableOpacity style={[styles.imageUploadBox, { backgroundColor: colors.inputBg, borderColor: colors.border }]} onPress={handlePickImage} activeOpacity={0.8}>
+                        {tempImage ? (
+                          <>
+                            <ExpoImage
+                              source={{ uri: tempImage }}
+                              style={styles.uploadedImage}
+                              contentFit="cover"
+                              transition={200}
+                              cachePolicy="memory-disk"
+                            />
+                            <View style={styles.imageOverlay}><View style={styles.badge}><Text style={styles.badgeText}>Change</Text></View></View>
+                          </>
+                        ) : (
+                          <>
+                            <ImageIcon size={32} color={colors.subText} style={{ marginBottom: 8 }} />
+                            <Text style={[styles.uploadPlaceholder, { color: colors.subText }]}>Tap to add photo</Text>
+                          </>
+                        )}
+                      </TouchableOpacity>
+                      {tempImage && <TouchableOpacity style={styles.deleteImageBtn} onPress={handleDeleteImage}><Trash2 size={16} color="#FFFFFF" /></TouchableOpacity>}
+                    </View>
+
+                    <View style={styles.inputContainer}>
+                      {(() => {
+                        const LIMIT = 30;
+                        const currentLen = tempText.length;
+                        const remaining = LIMIT - currentLen;
+                        const isOverLimit = remaining < 0;
+                        return (
+                          <>
+                            <TextInput
+                              style={[
+                                styles.textInput,
+                                { backgroundColor: colors.inputBg, color: colors.text, borderColor: isOverLimit ? '#EF4444' : 'transparent', borderWidth: isOverLimit ? 1 : 0 }
+                              ]}
+                              value={tempText}
+                              onChangeText={(text) => setTempText(text)}
+                              placeholder="今日はどんな1日でしたか？"
+                              placeholderTextColor={colors.subText}
+                              multiline={true} blurOnSubmit={false} returnKeyType="default"
+                            />
+                            <Text style={[styles.charCount, { color: isOverLimit ? '#EF4444' : colors.subText }]}>
+                              {isOverLimit ? `${remaining} ` : `${currentLen}/${LIMIT}`}
+                            </Text >
+                          </>
+                        );
+                      })()}
+                    </View >
+                    <TouchableOpacity
+                      onPress={handleSaveEntry}
+                      disabled={tempText.length > 30}
+                      style={[styles.modalSaveBtn, { backgroundColor: colors.accent, opacity: tempText.length > 30 ? 0.5 : 1 }]}
+                    >
+                      <Text style={[styles.modalSaveBtnText, { color: isDarkMode ? '#111827' : '#FFFFFF' }]}>SAVE ENTRY</Text>
+                    </TouchableOpacity>
+                  </View>
+                </ScrollView>
+              )}
+            </KeyboardAvoidingView>
           </Modal>
 
         </SafeAreaView>
