@@ -244,7 +244,10 @@ const generateInitialData = () => {
   const year = today.getFullYear();
   const month = today.getMonth();
 
-  data[`${year} -${month} -5`] = {
+  // Create key manually to avoid syntax parser issues
+  const key = `${year}-${month}-5`;
+
+  data[key] = {
     text: "カフェで新しいラテを試した。美味しかった。",
     image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80"
   };
