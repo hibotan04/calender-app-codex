@@ -4,6 +4,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { ChevronLeft, ChevronRight, X, Image as ImageIcon, Trash2, Settings, Moon, Sun, FileText, Image as LucideImage, Check, Cloud, Lock, User } from 'lucide-react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as MediaLibrary from 'expo-media-library';
+import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import * as FileSystem from 'expo-file-system/legacy';
 import { GestureHandlerRootView, GestureDetector, Gesture, Directions } from 'react-native-gesture-handler';
