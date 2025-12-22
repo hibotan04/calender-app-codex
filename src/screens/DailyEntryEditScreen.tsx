@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, TextInput, Dimensions, KeyboardAvoidingView, Platform, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, TextInput, Dimensions, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
 import { Layout } from '../components/Layout';
 import { Header } from '../components/Header';
 import { colors, layout, spacing, typography } from '../theme';
@@ -269,127 +269,126 @@ export const DailyEntryEditScreen: React.FC<DailyEntryEditScreenProps> = ({
           onRightPress={handleSave}
         />
 
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.content}>
 
-            {/* --- CANVAS AREA --- */}
-            <View style={styles.canvasContainer}>
-              <View style={styles.canvas}>
+        <View style={styles.content}>
 
-                {/* Layer 0: Image Placeholder / Selector */}
-                {!imageUri && (
-                  <View style={styles.emptyState}>
-                    <Text style={styles.emptyStateText}>Start by selecting a mode below</Text>
-                  </View>
-                )}
+          {/* --- CANVAS AREA --- */}
+          <View style={styles.canvasContainer}>
+            <View style={styles.canvas}>
 
-                {/* Layer 1: Image */}
-                {imageUri && (
-                  <GestureDetector gesture={imgComposedGesture}>
-                    <Animated.Image
-                      source={{ uri: imageUri }}
-                      style={[styles.imageLayer, animatedImageStyle]}
-                      resizeMode="cover"
-                    />
-                  </GestureDetector>
-                )}
+              {/* Layer 0: Image Placeholder / Selector */}
+              {!imageUri && (
+                <View style={styles.emptyState}>
+                  <Text style={styles.emptyStateText}>Start by selecting a mode below</Text>
+                </View>
+              )}
 
-                {/* NEW: Filter Overlay */}
-                {imageUri && filterColor !== 'none' && (
-                  <View
-                    style={[
-                      StyleSheet.absoluteFillObject,
-                      {
-                        backgroundColor: filterColor === 'black' ? '#000' : '#FFF',
-                        opacity: filterOpacity,
-                        pointerEvents: 'none'
-                      }
-                    ]}
+              {/* Layer 1: Image */}
+              {imageUri && (
+                <GestureDetector gesture={imgComposedGesture}>
+                  <Animated.Image
+                    source={{ uri: imageUri }}
+                    style={[styles.imageLayer, animatedImageStyle]}
+                    resizeMode="cover"
                   />
-                )}
+                </GestureDetector>
+              )}
 
-                {/* Layer 2: Date Overlay (Toggle Color) */}
-                <TouchableOpacity style={styles.dateOverlay} onPress={toggleDateColor} activeOpacity={0.8}>
-                  <Text style={[styles.dateText, { color: dateColor }]}>{dayNumber}</Text>
-                </TouchableOpacity>
+              {/* NEW: Filter Overlay */}
+              {imageUri && filterColor !== 'none' && (
+                <View
+                  style={[
+                    StyleSheet.absoluteFillObject,
+                    {
+                      backgroundColor: filterColor === 'black' ? '#000' : '#FFF',
+                      opacity: filterOpacity,
+                      pointerEvents: 'none'
+                    }
+                  ]}
+                />
+              )}
 
-                {/* Layer 3: Text */}
-                {text ? (
-                  <Animated.View style={[styles.textLayer]} pointerEvents="none">
-                    <Animated.View style={animatedTextStyle}>
-                      <Text style={[styles.diaryText, { color: textColor }]}>{text}</Text>
-                    </Animated.View>
+              {/* Layer 2: Date Overlay (Toggle Color) */}
+              <TouchableOpacity style={styles.dateOverlay} onPress={toggleDateColor} activeOpacity={0.8}>
+                <Text style={[styles.dateText, { color: dateColor }]}>{dayNumber}</Text>
+              </TouchableOpacity>
+
+              {/* Layer 3: Text */}
+              {text ? (
+                <Animated.View style={[styles.textLayer]} pointerEvents="none">
+                  <Animated.View style={animatedTextStyle}>
+                    <Text style={[styles.diaryText, { color: textColor }]}>{text}</Text>
                   </Animated.View>
-                ) : null}
+                </Animated.View>
+              ) : null}
 
-                {/* Layer 4: Text Gestures Overlay */}
-                {activeMode === 'text' && (
-                  <GestureDetector gesture={txtComposedGesture}>
-                    <View style={styles.gestureOverlay} />
-                  </GestureDetector>
-                )}
+              {/* Layer 4: Text Gestures Overlay */}
+              {activeMode === 'text' && (
+                <GestureDetector gesture={txtComposedGesture}>
+                  <View style={styles.gestureOverlay} />
+                </GestureDetector>
+              )}
 
-                {/* Editing Overlay (When typing text) */}
-                {isEditingTextContent && (
-                  <View style={styles.textInputOverlay}>
-                    <TextInput
-                      value={text}
-                      onChangeText={setText}
-                      autoFocus
-                      placeholder="Type your memory..."
-                      placeholderTextColor="rgba(255,255,255,0.6)"
-                      style={[styles.floatingInput, { color: textColor, lineHeight: 28 }]}
-                      multiline
-                    />
-                    <View style={styles.colorPalette}>
-                      {['#FFFFFF', '#000000', '#292524', '#78716C'].map(c => (
-                        <TouchableOpacity
-                          key={c}
-                          style={[styles.colorDot, { backgroundColor: c }, textColor === c && styles.activeColorDot]}
-                          onPress={() => setTextColor(c)}
-                        />
-                      ))}
-                    </View>
-                    <TouchableOpacity style={styles.closeInputBtn} onPress={() => setIsEditingTextContent(false)}>
-                      <Check size={20} color="#FFF" />
-                    </TouchableOpacity>
+              {/* Editing Overlay (When typing text) */}
+              {isEditingTextContent && (
+                <View style={styles.textInputOverlay}>
+                  <TextInput
+                    value={text}
+                    onChangeText={setText}
+                    autoFocus
+                    placeholder="Type your memory..."
+                    placeholderTextColor="rgba(255,255,255,0.6)"
+                    style={[styles.floatingInput, { color: textColor, lineHeight: 28 }]}
+                    multiline
+                  />
+                  <View style={styles.colorPalette}>
+                    {['#FFFFFF', '#000000', '#292524', '#78716C'].map(c => (
+                      <TouchableOpacity
+                        key={c}
+                        style={[styles.colorDot, { backgroundColor: c }, textColor === c && styles.activeColorDot]}
+                        onPress={() => setTextColor(c)}
+                      />
+                    ))}
                   </View>
-                )}
+                  <TouchableOpacity style={styles.closeInputBtn} onPress={() => setIsEditingTextContent(false)}>
+                    <Check size={20} color="#FFF" />
+                  </TouchableOpacity>
+                </View>
+              )}
 
-              </View>
-
-              {/* Toolbar Controls */}
-              <View style={styles.toolbar}>
-                {activeMode === 'photo' && imageUri && (
-                  <View style={styles.filterControls}>
-                    <View style={styles.filterBtns}>
-                      <TouchableOpacity onPress={() => setFilterColor('none')} style={[styles.toolBtn, filterColor === 'none' && styles.activeToolBtn]}>
-                        <Text style={[styles.toolBtnText, filterColor === 'none' && styles.activeToolBtnText]}>Original</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={() => setFilterColor('white')} style={[styles.toolBtn, filterColor === 'white' && styles.activeToolBtn]}>
-                        <Sun size={16} color={filterColor === 'white' ? '#FFF' : '#333'} />
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={() => setFilterColor('black')} style={[styles.toolBtn, filterColor === 'black' && styles.activeToolBtn]}>
-                        <Moon size={16} color={filterColor === 'black' ? '#FFF' : '#333'} />
-                      </TouchableOpacity>
-                    </View>
-
-                    {filterColor !== 'none' && (
-                      <View style={styles.sliderContainer}>
-                        <Text style={styles.sliderLabel}>Opacity</Text>
-                        <SimpleSlider value={filterOpacity} onValueChange={setFilterOpacity} width={150} />
-                      </View>
-                    )}
-                  </View>
-                )}
-                <Text style={styles.hintText}>
-                  {activeMode === 'photo' ? 'Pinch, Drag, Rotate Image' : activeMode === 'text' ? 'Pinch, Drag to adjust Text' : 'Select a mode to edit'}
-                </Text>
-              </View>
             </View>
 
+            {/* Toolbar Controls */}
+            <View style={styles.toolbar}>
+              {activeMode === 'photo' && imageUri && (
+                <View style={styles.filterControls}>
+                  <View style={styles.filterBtns}>
+                    <TouchableOpacity onPress={() => setFilterColor('none')} style={[styles.toolBtn, filterColor === 'none' && styles.activeToolBtn]}>
+                      <Text style={[styles.toolBtnText, filterColor === 'none' && styles.activeToolBtnText]}>Original</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setFilterColor('white')} style={[styles.toolBtn, filterColor === 'white' && styles.activeToolBtn]}>
+                      <Sun size={16} color={filterColor === 'white' ? '#FFF' : '#333'} />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setFilterColor('black')} style={[styles.toolBtn, filterColor === 'black' && styles.activeToolBtn]}>
+                      <Moon size={16} color={filterColor === 'black' ? '#FFF' : '#333'} />
+                    </TouchableOpacity>
+                  </View>
+
+                  {filterColor !== 'none' && (
+                    <View style={styles.sliderContainer}>
+                      <Text style={styles.sliderLabel}>Opacity</Text>
+                      <SimpleSlider value={filterOpacity} onValueChange={setFilterOpacity} width={150} />
+                    </View>
+                  )}
+                </View>
+              )}
+              <Text style={styles.hintText}>
+                {activeMode === 'photo' ? 'Pinch, Drag, Rotate Image' : activeMode === 'text' ? 'Pinch, Drag to adjust Text' : 'Select a mode to edit'}
+              </Text>
+            </View>
           </View>
-        </TouchableWithoutFeedback>
+
+        </View>
       </Layout>
     </KeyboardAvoidingView>
   );
