@@ -397,7 +397,7 @@ export default function App() {
   const nextMonth = () => setCurrentDate(new Date(year, month + 1, 1));
 
   const handleDayPress = (day: number) => {
-    const dateKey = `${year} -${month} -${day} `;
+    const dateKey = `${year}-${month}-${day}`; // Removed extra spaces
     setSelectedDate(dateKey);
     const existingEntry = entries[dateKey];
     setTempText(existingEntry?.text || "");
@@ -419,7 +419,6 @@ export default function App() {
     // 1. Request MediaLibrary Permissions
     const { status } = await MediaLibrary.requestPermissionsAsync();
     if (status !== 'granted') {
-      // Fallback or Alert
       Alert.alert("Permission Required", "Please allow access to photos to filter by date.");
       return;
     }
@@ -428,7 +427,7 @@ export default function App() {
 
     // 2. Calculate Date Range
     // selectedDate is "YYYY-M-D" (Month is 0-indexed)
-    const [y, m, d] = selectedDate.split('-').map(Number);
+    const [y, m, d] = selectedDate.split('-').map(str => parseInt(str.trim(), 10)); // Robust parsing
     const startOfDay = new Date(y, m, d, 0, 0, 0).getTime();
     const endOfDay = new Date(y, m, d, 23, 59, 59).getTime();
 
@@ -648,7 +647,7 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} backgroundColor={colors.bg} />
+        <StatusBar style={isDarkMode ? "light" : "dark"} backgroundColor={colors.bg} />
         <SafeAreaView style={[styles.container, { backgroundColor: colors.bg }]} edges={['top']}>
 
           {/* 
