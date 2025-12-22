@@ -1,298 +1,22 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { ChevronLeft, ChevronRight, X, Image as ImageIcon, Trash2, Settings, Moon, Sun, FileText, Image as LucideImage, Check, Cloud, Lock, User } from 'lucide-react-native';
-import * as ImagePicker from 'expo-image-picker';
-import * as MediaLibrary from 'expo-media-library';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, Modal, Alert, Keyboard } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { ActionSheetIOS, ActivityIndicator, Alert, Dimensions, Image, Modal, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, FlatList, Keyboard, KeyboardAvoidingView } from 'react-native';
-import { Image as ExpoImage } from 'expo-image';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useFonts } from 'expo-font';
 import * as FileSystem from 'expo-file-system/legacy';
-import { GestureHandlerRootView, GestureDetector, Gesture, Directions } from 'react-native-gesture-handler';
-import { runOnJS } from 'react-native-reanimated';
+
+import { ThemeColor, GridMode } from './src/types';
+import { THEMES } from './src/theme';
+import { useDiaryData } from './src/hooks/useDiaryData';
+
+import { CalendarHeader } from './src/components/CalendarHeader';
+import { CalendarGrid } from './src/components/CalendarGrid';
+import { EntryModal } from './src/components/EntryModal';
+import { SideMenu } from './src/components/SideMenu';
 import { ImageCropper } from './src/components/ImageCropper';
 
-// ==========================================
-// ▼▼▼ CONSTANTS & TYPES ▼▼▼
-const SCREEN_WIDTH = Dimensions.get('window').width;
-const DIARY_FILE_URI = FileSystem.documentDirectory + 'diary_entries_v2.json';
 const SETTINGS_FILE_URI = FileSystem.documentDirectory + 'app_settings.json';
-
-const BASE_FONT_FAMILY = Platform.OS === 'ios' ? 'Georgia' : 'serif';
-const DIARY_FONT_FAMILY = 'RoundedMplus1c';
-
-type ThemeColor = 'mono' | 'linen' | 'ice' | 'azalea' | 'rose' | 'lilac';
-type GridMode = 'standard' | 'sequential' | 'weekly';
-
-interface ThemeColors {
-  bg: string;
-  text: string;
-  subText: string;
-  border: string;
-  modalBg: string;
-  inputBg: string;
-  accent: string;
-  weekText: string;
-  sundayText: string;
-  cellBg: string;
-  placeholder: string;
-  activeMenu: string;
-}
-
-// ==========================================
-// ▼▼▼ USER CUSTOM PALETTE (Pastel & Dreamy) + ORIGINAL ▼▼▼
-const THEMES: Record<ThemeColor, { light: ThemeColors; dark: ThemeColors }> = {
-  // 0. MONO (Original Default) - Atelier Stone
-  mono: {
-    light: {
-      bg: '#FAFAFA',
-      text: '#333333',
-      subText: '#A1A1AA',
-      border: '#E4E4E7',
-      modalBg: '#FFFFFF',
-      inputBg: '#F4F4F5',
-      accent: '#3F3F46',
-      weekText: '#D4D4D8',
-      sundayText: '#FCA5A5',
-      cellBg: '#FFFFFF',
-      placeholder: '#F4F4F5',
-      activeMenu: '#18181B'
-    },
-    dark: {
-      bg: '#18181B',
-      text: '#E4E4E7',
-      subText: '#71717A',
-      border: '#27272A',
-      modalBg: '#18181B',
-      inputBg: '#27272A',
-      accent: '#FAFAFA',
-      weekText: '#3F3F46',
-      sundayText: '#9F1239',
-      cellBg: '#18181B',
-      placeholder: '#27272A',
-      activeMenu: '#E4E4E7'
-    }
-  },
-  // 1. LINEN (Default, Warm Paper) - #FAEEE5
-  linen: {
-    light: {
-      bg: '#FAEEE5',
-      text: '#5D4037', // Warm Brown
-      subText: '#A1887F',
-      border: '#E6D0C5',
-      modalBg: '#FFFAF8',
-      inputBg: '#FFF5F0',
-      accent: '#8D6E63',
-      weekText: '#BCAAA4',
-      sundayText: '#B0898880', // Desaturated Red + Transparency
-      cellBg: '#FFFFFF', // Clean White cards on linen bg
-      placeholder: '#FFF5F0',
-      activeMenu: '#5D4037'
-    },
-    dark: {
-      bg: '#3E2723',
-      text: '#D7CCC8',
-      subText: '#A1887F',
-      border: '#5D4037',
-      modalBg: '#4E342E',
-      inputBg: '#5D4037',
-      accent: '#BCAAA4',
-      weekText: '#5D4037',
-      sundayText: '#B0898880',
-      cellBg: '#2D1B18',
-      placeholder: '#4E342E',
-      activeMenu: '#D7CCC8'
-    }
-  },
-  // 2. JAGGED ICE (Cool Blue) - #C9E6EE
-  ice: {
-    light: {
-      bg: '#C9E6EE',
-      text: '#37474F', // Blue Grey
-      subText: '#78909C',
-      border: '#B0D4DE',
-      modalBg: '#E3F2F6',
-      inputBg: '#E1F5FE',
-      accent: '#546E7A',
-      weekText: '#90A4AE',
-      sundayText: '#9FA6B080', // Cool Muted Grey-Red + Transparency
-      cellBg: '#FFFFFF',
-      placeholder: '#E1F5FE',
-      activeMenu: '#263238'
-    },
-    dark: {
-      bg: '#263238',
-      text: '#ECEFF1',
-      subText: '#90A4AE',
-      border: '#37474F',
-      modalBg: '#37474F',
-      inputBg: '#455A64',
-      accent: '#80CBC4',
-      weekText: '#455A64',
-      sundayText: '#B0A0A080',
-      cellBg: '#1F292E',
-      placeholder: '#37474F',
-      activeMenu: '#80CBC4'
-    }
-  },
-  // 3. AZALEA (Soft Pink) - #FAD1D8
-  azalea: {
-    light: {
-      bg: '#FAD1D8',
-      text: '#880E4F', // Dark Pink/Red
-      subText: '#BC477B',
-      border: '#F4B0C0',
-      modalBg: '#FFF0F5',
-      inputBg: '#FFEBEE',
-      accent: '#C2185B',
-      weekText: '#F06292',
-      sundayText: '#B0889080', // Muted Rose + Transparency
-      cellBg: '#FFFFFF',
-      placeholder: '#FFEBEE',
-      activeMenu: '#880E4F'
-    },
-    dark: {
-      bg: '#4A081F', // Deep Maroon
-      text: '#F8BBD0',
-      subText: '#D81B60',
-      border: '#880E4F',
-      modalBg: '#650F2C',
-      inputBg: '#880E4F',
-      accent: '#F48FB1',
-      weekText: '#880E4F',
-      sundayText: '#D8A0B080',
-      cellBg: '#380617',
-      placeholder: '#650F2C',
-      activeMenu: '#F8BBD0'
-    }
-  },
-  // 4. WE PEEP (Rose) - #F2C4D6
-  rose: {
-    light: {
-      bg: '#F2C4D6',
-      text: '#4A4A4A', // Soft Black for modern feel
-      subText: '#8D6E63',
-      border: '#E1A4BC',
-      modalBg: '#FFF5F8',
-      inputBg: '#FCE4EC',
-      accent: '#BA68C8',
-      weekText: '#BA68C8',
-      sundayText: '#B0889080',
-      cellBg: '#FFFFFF',
-      placeholder: '#FCE4EC',
-      activeMenu: '#4A4A4A'
-    },
-    dark: {
-      bg: '#29181D',
-      text: '#F2C4D6',
-      subText: '#BA68C8',
-      border: '#4A2A36',
-      modalBg: '#3D222A',
-      inputBg: '#4A2A36',
-      accent: '#F48FB1',
-      weekText: '#4A2A36',
-      sundayText: '#D8A0B080',
-      cellBg: '#1F1216',
-      placeholder: '#3D222A',
-      activeMenu: '#F2C4D6'
-    }
-  },
-  // 5. PRELUDE (Lilac) - #DBC0E7
-  lilac: {
-    light: {
-      bg: '#DBC0E7',
-      text: '#4A148C', // Deep Purple
-      subText: '#7B1FA2',
-      border: '#C09ADB',
-      modalBg: '#F3E5F5',
-      inputBg: '#F3E5F5',
-      accent: '#8E24AA',
-      weekText: '#AB47BC',
-      sundayText: '#A090B080', // Muted Violet + Transparency
-      cellBg: '#FFFFFF',
-      placeholder: '#F3E5F5',
-      activeMenu: '#4A148C'
-    },
-    dark: {
-      bg: '#200A2E', // Deep Purple Night
-      text: '#E1BEE7',
-      subText: '#9C27B0',
-      border: '#4A148C',
-      modalBg: '#311045',
-      inputBg: '#4A148C',
-      accent: '#CE93D8',
-      weekText: '#4A148C',
-      sundayText: '#C0B0D080',
-      cellBg: '#15061F',
-      placeholder: '#311045',
-      activeMenu: '#E1BEE7'
-    }
-  }
-};
-
-const THEME_OPTIONS: { key: ThemeColor; color: string }[] = [
-  { key: 'mono', color: '#52525B' },   // Original
-  { key: 'linen', color: '#FAEEE5' },  // Warm
-  { key: 'ice', color: '#C9E6EE' },    // Blue
-  { key: 'azalea', color: '#FAD1D8' }, // Pink 1
-  { key: 'rose', color: '#F2C4D6' },   // Pink 2
-  { key: 'lilac', color: '#DBC0E7' },  // Purple
-];
-
-// ==========================================
-// ▼▼▼ DUMMY DATA START ▼▼▼
-const generateInitialData = () => {
-  const data: Record<string, { text: string; image: string }> = {};
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth();
-
-  // Create key manually to avoid syntax parser issues
-  const key = `${year}-${month}-5`;
-
-  data[key] = {
-    text: "カフェで新しいラテを試した。美味しかった。",
-    image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80"
-  };
-  return data;
-};
-// ==========================================
-
-type DynamicTextStyle = {
-  fontSize: number;
-  lineHeight: number;
-  textAlign: 'center' | 'left';
-};
-
-const getDynamicTextStyle = (text: string): DynamicTextStyle => {
-  const len = text.length;
-  const newlines = text.split('\n').length - 1;
-  const textAlign = 'center';
-
-  if (newlines >= 3) {
-    return { fontSize: 5, lineHeight: 6.5, textAlign };
-  }
-  if (newlines >= 2) {
-    return { fontSize: 6.5, lineHeight: 8, textAlign };
-  }
-
-  if (len <= 7) {
-    return { fontSize: 9, lineHeight: 12, textAlign };
-  }
-  else if (len <= 16) {
-    return { fontSize: 8, lineHeight: 11, textAlign };
-  }
-  else if (len <= 25) {
-    return { fontSize: 7, lineHeight: 10, textAlign };
-  }
-  else {
-    return { fontSize: 6, lineHeight: 8, textAlign };
-  }
-};
-
-const DEFAULT_TEXT_STYLE: DynamicTextStyle = {
-  fontSize: 10, lineHeight: 10, textAlign: 'center'
-};
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -301,46 +25,43 @@ export default function App() {
   });
 
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [entries, setEntries] = useState<Record<string, { text: string; image: string }>>({});
+
+  // Custom Hook for Data
+  const {
+    entries,
+    addEntry,
+    isPhotoPickerOpen,
+    setIsPhotoPickerOpen,
+    pickerPhotos,
+    pickerLoading,
+    croppingImage,
+    setCroppingImage,
+    launchDatePhotoPicker,
+    handleSelectPhoto,
+    launchStandardPicker
+  } = useDiaryData();
+
+  // Local UI State
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [tempText, setTempText] = useState("");
   const [tempImage, setTempImage] = useState<string | null>(null);
-  const [croppingImage, setCroppingImage] = useState<string | null>(null); // New state for transient cropping
 
-  // === PHOTO PICKER STATE ===
-  const [isPhotoPickerOpen, setIsPhotoPickerOpen] = useState(false);
-  const [pickerPhotos, setPickerPhotos] = useState<MediaLibrary.Asset[]>([]);
-  const [pickerLoading, setPickerLoading] = useState(false);
-
-  // === SETTINGS STATES ===
+  // Settings State
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isPhotoOnly, setIsPhotoOnly] = useState(false);
   const [gridMode, setGridMode] = useState<GridMode>('standard');
   const [themeColor, setThemeColor] = useState<ThemeColor>('mono');
 
-  // Derive Colors
+  // Derived
   const currentTheme = THEMES[themeColor] || THEMES['mono'];
   const colors = currentTheme[isDarkMode ? 'dark' : 'light'];
 
-  const scrollViewRef = useRef<ScrollView>(null);
-
-
-  // STARTUP: Load All Data
+  // Load Settings
   useEffect(() => {
-    const initializeApp = async () => {
+    const loadSettings = async () => {
       try {
-        // 1. Load Diary Entries
-        const entriesInfo = await FileSystem.getInfoAsync(DIARY_FILE_URI);
-        if (entriesInfo.exists) {
-          const content = await FileSystem.readAsStringAsync(DIARY_FILE_URI);
-          setEntries(JSON.parse(content));
-        } else {
-          setEntries({});
-        }
-
-        // 2. Load Settings
         const settingsInfo = await FileSystem.getInfoAsync(SETTINGS_FILE_URI);
         if (settingsInfo.exists) {
           const settingsContent = await FileSystem.readAsStringAsync(SETTINGS_FILE_URI);
@@ -351,13 +72,13 @@ export default function App() {
           if (settings.themeColor !== undefined && THEMES[settings.themeColor as ThemeColor]) setThemeColor(settings.themeColor);
         }
       } catch (e) {
-        console.error("Failed to initialize app", e);
+        console.error("Failed to load settings", e);
       }
     };
-    initializeApp();
+    loadSettings();
   }, []);
 
-  // Persist Settings
+  // Save Settings
   useEffect(() => {
     const saveSettings = async () => {
       const settings = { isDarkMode, isPhotoOnly, gridMode, themeColor };
@@ -368,39 +89,20 @@ export default function App() {
       }
     };
     saveSettings();
-  }, [isDarkMode, isPhotoOnly, themeColor]);
+  }, [isDarkMode, isPhotoOnly, gridMode, themeColor]);
 
-
-  const saveEntriesToStorage = async (newEntries: Record<string, { text: string; image: string }>) => {
-    try {
-      await FileSystem.writeAsStringAsync(DIARY_FILE_URI, JSON.stringify(newEntries));
-    } catch (e) {
-      console.error("Failed to save entries to FileSystem", e);
-    }
-  };
-
-  useEffect(() => {
-    const eventName = Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
-    const showSubscription = Keyboard.addListener(eventName, () => {
-      if (isModalOpen) {
-        scrollViewRef.current?.scrollToEnd({ animated: true });
-      }
-    });
-    return () => showSubscription.remove();
-  }, [isModalOpen]);
 
   if (!fontsLoaded) return null;
 
+  // Calendar Logic
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const firstDay = new Date(year, month, 1).getDay();
 
   const prevMonth = () => setCurrentDate(new Date(year, month - 1, 1));
   const nextMonth = () => setCurrentDate(new Date(year, month + 1, 1));
 
   const handleDayPress = (day: number) => {
-    const dateKey = `${year}-${month + 1}-${day}`; // Fix: 1-indexed month for display/storage
+    const dateKey = `${year}-${month + 1}-${day}`;
     setSelectedDate(dateKey);
     const existingEntry = entries[dateKey];
     setTempText(existingEntry?.text || "");
@@ -410,88 +112,9 @@ export default function App() {
 
   const handleSaveEntry = () => {
     if (selectedDate) {
-      const newEntries = { ...entries, [selectedDate]: { text: tempText, image: tempImage || '' } };
-      setEntries(newEntries);
-      saveEntriesToStorage(newEntries);
+      addEntry(selectedDate, { text: tempText, image: tempImage || '' });
     }
     setIsModalOpen(false);
-  };
-
-  // === CUSTOM PHOTO PICKER LOGIC ===
-  const handlePickImage = async () => {
-    console.log("handlePickImage called, date:", selectedDate);
-
-    if (!selectedDate) {
-      Alert.alert("Error", "No date selected");
-      return;
-    }
-
-    try {
-      // 1. Request MediaLibrary Permissions
-      const { status } = await MediaLibrary.requestPermissionsAsync();
-      console.log("Permission status:", status);
-
-      if (status !== 'granted') {
-        Alert.alert("Permission Required", "Please allow access to photos to filter by date.");
-        return;
-      }
-
-      // 2. Calculate Date Range
-      // selectedDate is "YYYY-M-D" (Month is 1-indexed now)
-      const parts = selectedDate.split('-');
-      const y = parseInt(parts[0].trim(), 10);
-      const m = parseInt(parts[1].trim(), 10) - 1; // Fix: Convert back to 0-indexed for Date
-      const d = parseInt(parts[2].trim(), 10);
-
-      console.log(`Parsing date: Y=${y}, M=${m}, D=${d}`);
-
-      if (isNaN(y) || isNaN(m) || isNaN(d)) {
-        Alert.alert("Error", "Invalid date format: " + selectedDate);
-        return;
-      }
-
-      const startOfDay = new Date(y, m, d, 0, 0, 0).getTime();
-      const endOfDay = new Date(y, m, d, 23, 59, 59).getTime();
-
-      setPickerLoading(true);
-      setIsPhotoPickerOpen(true); // Open Picker Modal
-
-      const assets = await MediaLibrary.getAssetsAsync({
-        createdAfter: startOfDay,
-        createdBefore: endOfDay,
-        mediaType: MediaLibrary.MediaType.photo,
-        sortBy: MediaLibrary.SortBy.creationTime,
-        first: 100,
-      });
-
-      console.log("Assets found:", assets.totalCount);
-      // DEBUG: Alert user exactly how many found
-      if (assets.totalCount > 0) {
-        // Optional: Toast or small indicator, but let's assume if >0 it renders.
-        // Alert.alert("Debug", `Found ${assets.totalCount} photos`);
-      } else {
-        // Handled by empty component
-      }
-      setPickerPhotos(assets.assets);
-
-    } catch (e) {
-      console.error(e);
-      Alert.alert("Error", "Could not load photos: " + (e instanceof Error ? e.message : String(e)));
-      setIsPhotoPickerOpen(false);
-    } finally {
-      setPickerLoading(false);
-    }
-  };
-
-  const handleSelectPhoto = async (asset: MediaLibrary.Asset) => {
-    try {
-      const assetInfo = await MediaLibrary.getAssetInfoAsync(asset.id);
-      // Instead of setting tempImage directly, open Cropper
-      setCroppingImage(assetInfo.localUri || assetInfo.uri);
-      setIsPhotoPickerOpen(false);
-    } catch (e) {
-      console.error(e);
-    }
   };
 
   const handleCropComplete = (uri: string) => {
@@ -499,460 +122,80 @@ export default function App() {
     setCroppingImage(null);
   };
 
-  // Fallback to Standard Picker
-  const handleLaunchStandardPicker = async () => {
-    setIsPhotoPickerOpen(false); // Close custom picker if open
-    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (permissionResult.granted === false) {
-      Alert.alert("Permission Required", "Please allow access.");
-      return;
-    }
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      quality: 1,
-    });
-    console.log("Standard picker result:", result);
-    if (!result.canceled) {
-      setTempImage(result.assets[0].uri);
-    }
-  };
-
-  const handleDeleteImage = () => setTempImage(null);
-  const toggleSettings = () => setIsSettingsOpen(!isSettingsOpen);
-  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
-  const togglePhotoOnly = () => setIsPhotoOnly(!isPhotoOnly);
-  const changeTheme = (color: ThemeColor) => setThemeColor(color);
-
-  const handleProFeatureClick = () => {
-    Alert.alert("Premium Feature", "Backup & Sync will be available in the Pro Plan.");
-  };
-
-
-
-  // SWIPE GESTURES
-  const flingLeft = Gesture.Fling()
-    .direction(Directions.LEFT)
-    .onEnd(() => {
-      'worklet';
-      runOnJS(nextMonth)();
-    });
-
-  const flingRight = Gesture.Fling()
-    .direction(Directions.RIGHT)
-    .onEnd(() => {
-      'worklet';
-      runOnJS(prevMonth)();
-    });
-
-  const composedGestures = Gesture.Simultaneous(flingLeft, flingRight);
-
-
-  // Helper to render a single day cell
-  // Helper to render a single day cell
-  const renderDayCell = (day: number, width: any, aspectRatio: number) => {
-    // FIX: Match exact format: YYYY-M-D (No spaces, 1-indexed month)
-    const dateKey = `${year}-${month + 1}-${day}`;
-    const entry = entries[dateKey];
-    const dynamicStyle = entry?.text ? getDynamicTextStyle(entry.text) : DEFAULT_TEXT_STYLE;
-    const len = entry?.text?.length || 0;
-    const newlines = entry?.text ? entry.text.split('\n').length - 1 : 0;
-    const forceSingleLine = len <= 7 && newlines === 0;
-
-    // Custom Styles for Grid Modes
-    const isLargeGrid = gridMode === 'sequential' || gridMode === 'weekly';
-    const hasImage = !!entry?.image;
-
-    // Date Logic
-    // 1. Color: If Photo exists, always White + Shadow (for all modes)
-    // 2. Size: Larger (13px) only for Sequential/Weekly modes
-    const useWhiteDate = hasImage;
-
-    const baseDateStyle = isLargeGrid ? { fontSize: 13, top: 2, left: 4 } : {};
-    const colorDateStyle = useWhiteDate
-      ? { color: '#FFFFFF', textShadowColor: 'rgba(0,0,0,0.6)', textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 3 }
-      : { color: colors.subText };
-
-    const dateNumStyle = { ...baseDateStyle, ...colorDateStyle };
-
-    // Text Logic
-    // Larger text only for Sequential/Weekly modes
-    // Weekly (4-col) gets even larger text than Sequential (6-col)
-    const isWeekly = gridMode === 'weekly';
-    const sizeBoost = isWeekly ? 2.5 : (isLargeGrid ? 1 : 0);
-
-    const textFontSize = dynamicStyle.fontSize + sizeBoost;
-    const textLineHeight = dynamicStyle.lineHeight + sizeBoost;
-
-    return (
-      <TouchableOpacity key={day} onPress={() => handleDayPress(day)} style={[styles.cell, { width: width, backgroundColor: colors.cellBg, borderColor: colors.border, aspectRatio: aspectRatio }]} activeOpacity={0.7}>
-        <Text style={[styles.dateNumber, dateNumStyle]}>{day}</Text>
-        <View style={[styles.imageArea, { backgroundColor: colors.placeholder }]}>
-          {entry?.image ? (
-            <ExpoImage
-              source={{ uri: entry.image }}
-              style={styles.cellImage}
-              contentFit="cover"
-              transition={200}
-              cachePolicy="memory-disk"
-            />
-          ) : <View style={styles.placeholderContainer} />}
-        </View>
-        {!isPhotoOnly && (
-          <View style={styles.textArea}>
-            {entry?.text ? (
-              <Text style={[styles.cellText, { fontSize: textFontSize, lineHeight: textLineHeight, textAlign: 'center', color: colors.text }]}
-                numberOfLines={forceSingleLine ? 1 : undefined} adjustsFontSizeToFit={forceSingleLine} minimumFontScale={0.5}>
-                {entry.text}
-              </Text>
-            ) : null}
-          </View>
-        )}
-      </TouchableOpacity>
-    );
-  };
-
-  const renderCalendarDays = () => {
-    const days: any[] = [];
-
-    // Adjust aspect ratio based on mode
-    let cellAspectRatio = isPhotoOnly ? 1 : 0.60;
-    if (gridMode === 'weekly' && !isPhotoOnly) {
-      cellAspectRatio = 0.70; // Shorter vertical height (taller rectangle -> wider rectangle logic: width/height. Higher = less height for same width.)
-    }
-
-    // === 1. STANDARD MODE (7 Cols, Weekday Padding) ===
-    if (gridMode === 'standard') {
-      const cellWidth = '14.285%'; // 100% / 7
-      for (let i = 0; i < firstDay; i++) {
-        days.push(<View key={`empty - ${i} `} style={[styles.cell, { width: cellWidth, backgroundColor: colors.cellBg, borderColor: colors.border, aspectRatio: cellAspectRatio }]} />);
-      }
-      for (let day = 1; day <= daysInMonth; day++) {
-        days.push(renderDayCell(day, cellWidth, cellAspectRatio));
-      }
-      // Trailing Padding
-      const totalCells = days.length;
-      const remainingInRow = (7 - (totalCells % 7)) % 7;
-      if (remainingInRow > 0) {
-        for (let i = 0; i < remainingInRow; i++) {
-          days.push(<View key={`empty - end - ${i} `} style={[styles.cell, { width: cellWidth, backgroundColor: colors.cellBg, borderColor: colors.border, aspectRatio: cellAspectRatio }]} />);
-        }
-      }
-    }
-    // === 2. SEQUENTIAL MODE (6 Cols, No Padding) ===
-    else if (gridMode === 'sequential') {
-      const cellWidth = '16.666%'; // 100% / 6
-      for (let day = 1; day <= daysInMonth; day++) {
-        days.push(renderDayCell(day, cellWidth, cellAspectRatio));
-      }
-      // Trailing Padding
-      const totalCells = days.length;
-      const remainingInRow = (6 - (totalCells % 6)) % 6;
-      if (remainingInRow > 0) {
-        for (let i = 0; i < remainingInRow; i++) {
-          days.push(<View key={`empty - end - ${i} `} style={[styles.cell, { width: cellWidth, backgroundColor: colors.cellBg, borderColor: colors.border, aspectRatio: cellAspectRatio }]} />);
-        }
-      }
-    }
-    // === 3. WEEKLY MODE (4 Cols, 4x2 per week) ===
-    else if (gridMode === 'weekly') {
-      const cellWidth = '25%'; // 100% / 4
-
-      let currentDay = 1;
-      let weekCount = 1;
-
-      while (currentDay <= daysInMonth) {
-        // A. Week Label Grid Item
-        days.push(
-          <View key={`week - label - ${weekCount} `} style={[styles.cell, { width: cellWidth, backgroundColor: colors.weekText, borderColor: colors.border, aspectRatio: cellAspectRatio, justifyContent: 'center', alignItems: 'center' }]}>
-            <Text style={{ fontFamily: BASE_FONT_FAMILY, color: colors.bg, fontWeight: 'bold' }}>Week {weekCount}</Text>
-          </View>
-        );
-
-        // B. Add 7 Days (or fewer if end of month)
-        for (let i = 0; i < 7; i++) {
-          if (currentDay <= daysInMonth) {
-            days.push(renderDayCell(currentDay, cellWidth, cellAspectRatio));
-            currentDay++;
-          } else {
-            // Empty slot filler
-            days.push(<View key={`empty - week - ${weekCount} -${i} `} style={[styles.cell, { width: cellWidth, backgroundColor: colors.cellBg, borderColor: colors.border, aspectRatio: cellAspectRatio }]} />);
-          }
-        }
-        weekCount++;
-      }
-    }
-
-    return days;
-  };
-
-
-
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <StatusBar style={isDarkMode ? "light" : "dark"} backgroundColor={colors.bg} />
         <SafeAreaView style={[styles.container, { backgroundColor: colors.bg }]} edges={['top']}>
 
-          {/* 
-                   WRAPPER FOR CAPTURE 
-                   We capture everything inside this view.
-                */}
           <View style={{ flex: 1, backgroundColor: colors.bg }}>
+            <CalendarHeader currentDate={currentDate} colors={colors} />
 
-            {/* Header (Arrows Removed) */}
-            <View style={[styles.header, { borderBottomColor: colors.border, justifyContent: 'center' }]}>
-              <View style={styles.headerTitleContainer}>
-                <Text style={[styles.headerTitle, { color: colors.text }]}>
-                  {currentDate.toLocaleString('en-US', { month: 'long' })}
-                </Text>
-                <Text style={[styles.headerYear, { color: colors.subText }]}>{year}</Text>
-              </View>
+            <View style={{ flex: 1 }}>
+              <CalendarGrid
+                currentDate={currentDate}
+                entries={entries}
+                colors={colors}
+                gridMode={gridMode}
+                isPhotoOnly={isPhotoOnly}
+                onDayPress={handleDayPress}
+                onSwipeLeft={nextMonth}
+                onSwipeRight={prevMonth}
+              />
             </View>
-
-            {/* Week Row (Only for Standard Mode) */}
-            {gridMode === 'standard' && (
-              <View style={styles.weekRow}>
-                {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map((day, idx) => (
-                  <Text key={day} style={[styles.weekText, { color: idx === 0 ? colors.sundayText : colors.weekText }]}>
-                    {day}
-                  </Text>
-                ))}
-              </View>
-            )}
-
-            {/* Calendar Grid with Swiping */}
-            <GestureDetector gesture={composedGestures}>
-              <View style={{ flex: 1 }}>
-                <ScrollView
-                  style={[styles.gridScroll, { backgroundColor: colors.bg }]}
-                  contentContainerStyle={[styles.gridContainer, { borderColor: colors.border }]}
-                >
-                  {renderCalendarDays()}
-                </ScrollView>
-              </View>
-            </GestureDetector>
           </View>
 
-          {/* Settings Menu Expansion */}
-          {isSettingsOpen && (
-            <View style={[styles.settingsMenu, { bottom: 100 }]}>
+          <SideMenu
+            isOpen={isSettingsOpen}
+            onToggle={() => setIsSettingsOpen(!isSettingsOpen)}
+            isDarkMode={isDarkMode}
+            onToggleDarkMode={() => setIsDarkMode(!isDarkMode)}
+            isPhotoOnly={isPhotoOnly}
+            onTogglePhotoOnly={() => setIsPhotoOnly(!isPhotoOnly)}
+            gridMode={gridMode}
+            onGridModeChange={setGridMode}
+            themeColor={themeColor}
+            onThemeChange={setThemeColor}
+            colors={colors}
+          />
 
+          <EntryModal
+            isVisible={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            selectedDate={selectedDate}
+            text={tempText}
+            setText={setTempText}
+            image={tempImage}
+            onPickImage={() => launchDatePhotoPicker(selectedDate || "")}
+            onDeleteImage={() => setTempImage(null)}
+            onSave={handleSaveEntry}
+            colors={colors}
+            isDarkMode={isDarkMode}
 
-              {/* 1. Feature Toggles */}
-              <TouchableOpacity onPress={() => {
-                if (gridMode === 'standard') setGridMode('sequential');
-                else if (gridMode === 'sequential') setGridMode('weekly');
-                else setGridMode('standard');
-              }} style={[styles.menuItem, { backgroundColor: colors.modalBg, borderColor: colors.border }]}>
-                <View style={{ width: 20 }}><Check size={20} color={gridMode !== 'standard' ? colors.activeMenu : 'transparent'} /></View>
-                <Text style={[styles.menuText, { color: colors.text }]}>
-                  Layout: {gridMode === 'standard' ? 'Standard' : gridMode === 'sequential' ? 'Sequential (6x6)' : 'Weekly (4x2)'}
-                </Text>
-              </TouchableOpacity>
+            isPhotoPickerOpen={isPhotoPickerOpen}
+            onClosePhotoPicker={() => setIsPhotoPickerOpen(false)}
+            pickerLoading={pickerLoading}
+            pickerPhotos={pickerPhotos}
+            onSelectPhoto={handleSelectPhoto}
+            onLaunchStandardPicker={async () => {
+              const uri = await launchStandardPicker();
+              if (uri) setTempImage(uri);
+            }}
+          />
 
-              <TouchableOpacity onPress={togglePhotoOnly} style={[styles.menuItem, { backgroundColor: colors.modalBg, borderColor: colors.border }]}>
-                {isPhotoOnly ? <FileText size={20} color={colors.activeMenu} /> : <LucideImage size={20} color={colors.text} />}
-                <Text style={[styles.menuText, { color: colors.text }]}>{isPhotoOnly ? "Show Text" : "Photo Only"}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={toggleDarkMode} style={[styles.menuItem, { backgroundColor: colors.modalBg, borderColor: colors.border }]}>
-                {isDarkMode ? <Sun size={20} color={colors.activeMenu} /> : <Moon size={20} color={colors.text} />}
-                <Text style={[styles.menuText, { color: colors.text }]}>{isDarkMode ? "Light Mode" : "Dark Mode"}</Text>
-              </TouchableOpacity>
-
-              {/* 2. Color Picker */}
-              <View style={[styles.colorPickerRow, { backgroundColor: colors.modalBg, borderColor: colors.border }]}>
-                {THEME_OPTIONS.map((theme) => (
-                  <TouchableOpacity
-                    key={theme.key}
-                    onPress={() => changeTheme(theme.key)}
-                    style={[styles.colorOption, { backgroundColor: theme.color }]}
-                  >
-                    {themeColor === theme.key && <Check size={12} color="#FFFFFF" />}
-                  </TouchableOpacity>
-                ))}
-              </View>
-
-              {/* 3. PRO Features Placeholder */}
-              <View style={[styles.proSection, { backgroundColor: colors.inputBg }]}>
-                <Text style={[styles.proHeader, { color: colors.subText }]}>PREMIUM FEATURES</Text>
-
-                <TouchableOpacity onPress={handleProFeatureClick} style={[styles.proItem, { backgroundColor: colors.modalBg, borderColor: colors.border, opacity: 0.7 }]}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Cloud size={20} color={colors.subText} />
-                    <Text style={[styles.menuText, { color: colors.subText }]}>Cloud Backup</Text>
-                  </View>
-                  <Lock size={14} color={colors.subText} />
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={handleProFeatureClick} style={[styles.proItem, { backgroundColor: colors.modalBg, borderColor: colors.border, opacity: 0.7 }]}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <User size={20} color={colors.subText} />
-                    <Text style={[styles.menuText, { color: colors.subText }]}>Account Sync</Text>
-                  </View>
-                  <Lock size={14} color={colors.subText} />
-                </TouchableOpacity>
-              </View>
-
-            </View>
-          )}
-
-          <TouchableOpacity
-            style={[styles.fab, { backgroundColor: colors.modalBg, borderColor: colors.border }]}
-            onPress={toggleSettings}
-            activeOpacity={0.8}
-          >
-            {isSettingsOpen ? <X size={24} color={colors.text} /> : <Settings size={24} color={colors.text} />}
-          </TouchableOpacity>
-
-          {/* === DIARY ENTRY MODAL (With Embedded Photo Picker) === */}
+          {/* Global Cropper Modal */}
           <Modal
-            visible={isModalOpen}
+            visible={!!croppingImage}
             transparent={true}
             animationType="fade"
-            onRequestClose={() => {
-              if (croppingImage) setCroppingImage(null);
-              else if (isPhotoPickerOpen) setIsPhotoPickerOpen(false);
-              else setIsModalOpen(false);
-            }}
+            onRequestClose={() => setCroppingImage(null)}
           >
-            {croppingImage ? (
+            {croppingImage && (
               <ImageCropper
                 imageUri={croppingImage}
                 onCancel={() => setCroppingImage(null)}
                 onComplete={handleCropComplete}
               />
-            ) : (
-              <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.modalOverlay} keyboardVerticalOffset={0}>
-
-                {/* === PHOTO PICKER VIEW (Conditionally Rendered) === */}
-                {isPhotoPickerOpen ? (
-                  <View style={[styles.modalContent, { backgroundColor: colors.modalBg, height: '90%', marginTop: 'auto', borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }]}>
-                    {/* Header */}
-                    <View style={styles.modalHeader}>
-                      <TouchableOpacity onPress={() => setIsPhotoPickerOpen(false)} style={[styles.closeBtn, { backgroundColor: colors.border, marginRight: 8 }]}>
-                        <ChevronLeft size={20} color={colors.text} />
-                      </TouchableOpacity>
-                      <Text style={[styles.modalDateTitle, { color: colors.text, fontSize: 16, flex: 1 }]}>
-                        Photos: {selectedDate}
-                      </Text>
-                      {/* Open Full Library Button in Header */}
-                      <TouchableOpacity onPress={handleLaunchStandardPicker} style={{ paddingHorizontal: 12, paddingVertical: 6, backgroundColor: colors.accent, borderRadius: 16 }}>
-                        <Text style={{ color: isDarkMode ? '#111827' : '#FFFFFF', fontSize: 12, fontWeight: 'bold' }}>Library</Text>
-                      </TouchableOpacity>
-                    </View>
-
-                    {/* Content */}
-                    {pickerLoading ? (
-                      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <ActivityIndicator size="large" color={colors.accent} />
-                        <Text style={{ marginTop: 10, color: colors.subText }}>Loading photos...</Text>
-                      </View>
-                    ) : pickerPhotos.length > 0 ? (
-                      <FlatList
-                        data={pickerPhotos}
-                        style={{ flex: 1 }}
-                        keyExtractor={(item) => item.id}
-                        numColumns={3}
-                        renderItem={({ item }) => (
-                          <TouchableOpacity onPress={() => handleSelectPhoto(item)} style={{ width: '33.33%', aspectRatio: 1, padding: 2 }}>
-                            <ExpoImage
-                              source={{ uri: item.uri }}
-                              style={{ width: '100%', height: '100%', borderRadius: 4, backgroundColor: '#eee' }}
-                              contentFit="cover"
-                              transition={200}
-                            />
-                          </TouchableOpacity>
-                        )}
-                      />
-                    ) : (
-                      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
-                        <ImageIcon size={48} color={colors.subText} style={{ marginBottom: 16 }} />
-                        <Text style={{ color: colors.text, fontSize: 16, marginBottom: 8 }}>No photos found for this date.</Text>
-                        <TouchableOpacity onPress={handleLaunchStandardPicker} style={[styles.modalSaveBtn, { backgroundColor: colors.accent, width: '100%' }]}>
-                          <Text style={[styles.modalSaveBtnText, { color: isDarkMode ? '#111827' : '#FFFFFF' }]}>OPEN FULL LIBRARY</Text>
-                        </TouchableOpacity>
-                      </View>
-                    )}
-                  </View>
-                ) : (
-                  /* === DIARY FORM VIEW === */
-                  <ScrollView ref={scrollViewRef} contentContainerStyle={styles.modalScrollContent} keyboardShouldPersistTaps="handled">
-                    <View style={[styles.modalContent, { backgroundColor: colors.modalBg }]}>
-                      <View style={styles.modalHeader}>
-                        <View style={{ marginBottom: 4 }}>
-                          <Text style={[styles.modalDateTitle, { color: colors.text }]}>
-                            {selectedDate ? new Date(selectedDate).getDate() : ''}
-                            <Text style={[styles.modalDateMonth, { color: colors.subText }]}>
-                              {' '}{selectedDate ? new Date(selectedDate).toLocaleString('en-US', { month: 'short' }) : ''}
-                            </Text>
-                          </Text>
-                        </View>
-                        <TouchableOpacity onPress={() => setIsModalOpen(false)} style={[styles.closeBtn, { backgroundColor: colors.border }]}>
-                          <X size={20} color={colors.text} />
-                        </TouchableOpacity>
-                      </View>
-
-                      <View style={styles.imageSection}>
-                        <TouchableOpacity style={[styles.imageUploadBox, { backgroundColor: colors.inputBg, borderColor: colors.border }]} onPress={handlePickImage} activeOpacity={0.8}>
-                          {tempImage ? (
-                            <>
-                              <ExpoImage
-                                source={{ uri: tempImage }}
-                                style={styles.uploadedImage}
-                                contentFit="cover"
-                                transition={200}
-                                cachePolicy="memory-disk"
-                              />
-                              <View style={styles.imageOverlay}><View style={styles.badge}><Text style={styles.badgeText}>Change</Text></View></View>
-                            </>
-                          ) : (
-                            <>
-                              <ImageIcon size={32} color={colors.subText} style={{ marginBottom: 8 }} />
-                              <Text style={[styles.uploadPlaceholder, { color: colors.subText }]}>Tap to add photo</Text>
-                            </>
-                          )}
-                        </TouchableOpacity>
-                        {tempImage && <TouchableOpacity style={styles.deleteImageBtn} onPress={handleDeleteImage}><Trash2 size={16} color="#FFFFFF" /></TouchableOpacity>}
-                      </View>
-
-                      <View style={styles.inputContainer}>
-                        {(() => {
-                          const LIMIT = 30;
-                          const currentLen = tempText.length;
-                          const remaining = LIMIT - currentLen;
-                          const isOverLimit = remaining < 0;
-                          return (
-                            <>
-                              <TextInput
-                                style={[
-                                  styles.textInput,
-                                  { backgroundColor: colors.inputBg, color: colors.text, borderColor: isOverLimit ? '#EF4444' : 'transparent', borderWidth: isOverLimit ? 1 : 0 }
-                                ]}
-                                value={tempText}
-                                onChangeText={(text) => setTempText(text)}
-                                placeholder="今日はどんな1日でしたか？"
-                                placeholderTextColor={colors.subText}
-                                multiline={true} blurOnSubmit={false} returnKeyType="default"
-                              />
-                              <Text style={[styles.charCount, { color: isOverLimit ? '#EF4444' : colors.subText }]}>
-                                {isOverLimit ? `${remaining} ` : `${currentLen}/${LIMIT}`}
-                              </Text >
-                            </>
-                          );
-                        })()}
-                      </View >
-                      <TouchableOpacity
-                        onPress={handleSaveEntry}
-                        disabled={tempText.length > 30}
-                        style={[styles.modalSaveBtn, { backgroundColor: colors.accent, opacity: tempText.length > 30 ? 0.5 : 1 }]}
-                      >
-                        <Text style={[styles.modalSaveBtnText, { color: isDarkMode ? '#111827' : '#FFFFFF' }]}>SAVE ENTRY</Text>
-                      </TouchableOpacity>
-                    </View>
-                  </ScrollView>
-                )}
-              </KeyboardAvoidingView>
             )}
           </Modal>
 
@@ -964,55 +207,4 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  header: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 24, paddingVertical: 16 },
-  headerTitleContainer: { alignItems: 'center' },
-  headerTitle: { fontSize: 24, fontFamily: BASE_FONT_FAMILY, letterSpacing: 2, textTransform: 'uppercase' },
-  headerYear: { fontSize: 12, fontFamily: BASE_FONT_FAMILY, letterSpacing: 2, marginTop: 4 },
-
-  weekRow: { flexDirection: 'row', paddingBottom: 8 },
-  weekText: { flex: 1, textAlign: 'center', fontSize: 10, fontWeight: '700', letterSpacing: 1.5 },
-
-  gridScroll: { flex: 1 },
-  gridContainer: { flexDirection: 'row', flexWrap: 'wrap', borderTopWidth: 1 },
-  cell: { width: '14.28%', borderRightWidth: 1, borderBottomWidth: 1, padding: 0 },
-  dateNumber: { position: 'absolute', top: 2, left: 3, fontSize: 9, fontFamily: BASE_FONT_FAMILY, zIndex: 10 },
-  imageArea: { width: '100%', aspectRatio: 1, overflow: 'hidden' },
-  cellImage: { width: '100%', height: '100%' },
-  placeholderContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  textArea: { flex: 1, width: '100%', paddingHorizontal: 0, justifyContent: 'center', alignItems: 'center', overflow: 'hidden' },
-  cellText: { width: '100%', fontFamily: DIARY_FONT_FAMILY },
-
-  modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.3)' },
-  modalScrollContent: { flexGrow: 1, padding: 24, paddingTop: 80, paddingBottom: 350 },
-  modalContent: { borderRadius: 16, padding: 24, paddingBottom: 24, shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.1, shadowRadius: 10, elevation: 5 },
-  modalHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 },
-  modalDateTitle: { fontSize: 20, fontFamily: BASE_FONT_FAMILY, letterSpacing: 1 },
-  modalDateMonth: { fontSize: 14, textTransform: 'uppercase' },
-  closeBtn: { padding: 8, borderRadius: 999 },
-  imageSection: { marginBottom: 16, position: 'relative' },
-  imageUploadBox: { width: '100%', aspectRatio: 1, borderWidth: 1, borderStyle: 'dashed', borderRadius: 8, justifyContent: 'center', alignItems: 'center', overflow: 'hidden' },
-  uploadedImage: { width: '100%', height: '100%' },
-  uploadPlaceholder: { fontSize: 12 },
-  imageOverlay: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.1)', justifyContent: 'center', alignItems: 'center' },
-  badge: { backgroundColor: 'rgba(0,0,0,0.6)', paddingHorizontal: 12, paddingVertical: 4, borderRadius: 999 },
-  badgeText: { color: '#FFF', fontSize: 12, fontWeight: '500' },
-  deleteImageBtn: { position: 'absolute', top: 8, right: 8, backgroundColor: 'rgba(239, 68, 68, 0.9)', borderRadius: 999, padding: 8, zIndex: 10 },
-  inputContainer: { marginBottom: 24 },
-  textInput: { borderRadius: 6, padding: 12, fontSize: 14, fontFamily: BASE_FONT_FAMILY, height: 60, textAlignVertical: 'top' },
-  charCount: { textAlign: 'right', fontSize: 10, marginTop: 4 },
-  modalSaveBtn: { width: '100%', paddingVertical: 12, alignItems: 'center', borderRadius: 4 },
-  modalSaveBtnText: { fontSize: 12, letterSpacing: 2, textTransform: 'uppercase', fontWeight: '500' },
-
-  fab: { position: 'absolute', bottom: 40, right: 24, width: 48, height: 48, borderRadius: 24, justifyContent: 'center', alignItems: 'center', shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.2, shadowRadius: 5, elevation: 6, borderWidth: 1 },
-  settingsMenu: { position: 'absolute', bottom: 100, right: 24, alignItems: 'flex-end' },
-  menuItem: { flexDirection: 'row', alignItems: 'center', paddingVertical: 10, paddingHorizontal: 16, borderRadius: 8, marginBottom: 12, borderWidth: 1, shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 4, elevation: 3, minWidth: 140, justifyContent: 'space-between' },
-  menuText: { fontSize: 12, fontWeight: '500', marginLeft: 8, fontFamily: BASE_FONT_FAMILY },
-
-  colorPickerRow: { flexDirection: 'row', padding: 8, borderRadius: 8, borderWidth: 1, marginBottom: 12, gap: 8, elevation: 3, shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 4 },
-  colorOption: { width: 24, height: 24, borderRadius: 12, justifyContent: 'center', alignItems: 'center' },
-
-  // New Styles for PRO Features
-  proSection: { marginTop: 8, padding: 8, borderRadius: 8, minWidth: 140 },
-  proHeader: { fontSize: 10, fontWeight: '700', marginBottom: 8, letterSpacing: 0.5 },
-  proItem: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 8, paddingHorizontal: 12, borderRadius: 6, marginBottom: 6, borderWidth: 1 },
 });
