@@ -388,6 +388,25 @@ export const DailyEntryEditScreen: React.FC<DailyEntryEditScreenProps> = ({
             </View>
           </View>
 
+          {/* Bottom Controls */}
+          <View style={styles.bottomControls}>
+            <TouchableOpacity
+              style={[styles.controlBtn, activeMode === 'text' && styles.activeControlBtn]}
+              onPress={() => { setActiveMode('text'); setIsEditingTextContent(true); }}
+            >
+              <Type size={24} color={activeMode === 'text' ? colors.text.primary : colors.text.tertiary} />
+              <Text style={[styles.controlLabel, activeMode === 'text' && styles.activeControlLabel]}>Text</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.controlBtn, activeMode === 'photo' && styles.activeControlBtn]}
+              onPress={handlePickImage}
+            >
+              <ImageIcon size={24} color={activeMode === 'photo' ? colors.text.primary : colors.text.tertiary} />
+              <Text style={[styles.controlLabel, activeMode === 'photo' && styles.activeControlLabel]}>Photo</Text>
+            </TouchableOpacity>
+          </View>
+
         </View>
       </Layout>
     </KeyboardAvoidingView>
@@ -559,5 +578,29 @@ const styles = StyleSheet.create({
     ...typography.caption,
     color: colors.text.tertiary,
     fontSize: 10,
+  },
+  bottomControls: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 40,
+    paddingBottom: 40,
+    width: '100%',
+  },
+  controlBtn: {
+    alignItems: 'center',
+    padding: 10,
+    borderRadius: 8,
+  },
+  activeControlBtn: {
+    backgroundColor: '#F5F5F5',
+  },
+  controlLabel: {
+    ...typography.caption,
+    marginTop: 4,
+    color: colors.text.tertiary,
+  },
+  activeControlLabel: {
+    color: colors.text.primary,
+    fontWeight: 'bold',
   },
 });
