@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Modal, TextInput, Alert, Image, KeyboardAvoidingView, Platform, Dimensions, ActivityIndicator, FlatList } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Modal, TextInput, Alert, Image, KeyboardAvoidingView, Platform, Dimensions, ActivityIndicator, FlatList, Keyboard } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { ChevronLeft, ChevronRight, X, Image as ImageIcon, Trash2, Settings, Moon, Sun, FileText, Image as LucideImage, Check, Cloud, Lock, User } from 'lucide-react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as MediaLibrary from 'expo-media-library';
 import { useFonts } from 'expo-font';
-import * as FileSystem from 'expo-file-system';
+import * as FileSystem from 'expo-file-system/legacy';
 import { GestureHandlerRootView, GestureDetector, Gesture, Directions } from 'react-native-gesture-handler';
 import { runOnJS } from 'react-native-reanimated';
 
