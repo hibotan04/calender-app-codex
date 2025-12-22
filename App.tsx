@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight, X, Image as ImageIcon, Trash2, Settings, Moo
 import * as ImagePicker from 'expo-image-picker';
 import * as MediaLibrary from 'expo-media-library';
 import { useFonts } from 'expo-font';
-import * as FileSystem from 'expo-file-system/legacy';
+import * as FileSystem from 'expo-file-system';
 import { GestureHandlerRootView, GestureDetector, Gesture, Directions } from 'react-native-gesture-handler';
 import { runOnJS } from 'react-native-reanimated';
 
