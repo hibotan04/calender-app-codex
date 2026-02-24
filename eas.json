@@ -10,11 +10,7 @@
     "preview": {
       "distribution": "internal"
     },
-    "production": {
-      "cache": {
-        "clear": true
-      }
-    }
+    "production": {}
   },
   "submit": {
     "production": {}
