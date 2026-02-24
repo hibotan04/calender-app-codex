@@ -76,6 +76,7 @@
           }
         }
       ],
+      "./plugins/withModularHeaders.js",
       "./plugins/withGrpcWorkaround.js"
     ],
     "extra": {
