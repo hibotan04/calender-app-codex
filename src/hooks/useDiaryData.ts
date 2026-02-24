@@ -4,8 +4,18 @@ import * as FileSystem from 'expo-file-system/legacy';
 import * as MediaLibrary from 'expo-media-library';
 import * as ImagePicker from 'expo-image-picker';
 import { DiaryEntry } from '../types';
+import { SyncService } from '../services/SyncService';
+import auth from '@react-native-firebase/auth';
 
 const DIARY_FILE_URI = FileSystem.documentDirectory + 'diary_entries_v2.json';
+const IMAGES_DIR = FileSystem.documentDirectory + 'images/';
+
+const ensureDirExists = async () => {
+  const dirInfo = await FileSystem.getInfoAsync(IMAGES_DIR);
+  if (!dirInfo.exists) {
+    await FileSystem.makeDirectoryAsync(IMAGES_DIR, { intermediates: true });
+  }
+};
 
 export const useDiaryData = () => {
   const [entries, setEntries] = useState<Record<string, DiaryEntry>>({});
@@ -43,9 +53,55 @@ export const useDiaryData = () => {
     }
   };
 
-  const addEntry = (dateKey: string, data: DiaryEntry) => {
-    const newEntries = { ...entries, [dateKey]: data };
+  // Subscribe to Cloud Updates
+  useEffect(() => {
+    let unsubscribeData: (() => void) | undefined;
+
+    const unsubscribeAuth = auth().onAuthStateChanged((user) => {
+      if (unsubscribeData) unsubscribeData(); // Unsub previous user
+
+      if (user) {
+        unsubscribeData = SyncService.subscribeToEntries((cloudEntries) => {
+          setEntries(prev => {
+            const merged = { ...prev, ...cloudEntries };
+            // Do NOT call saveEntries here to avoid state loop if not careful, 
+            // but writing to file is essential for offline cache.
+            FileSystem.writeAsStringAsync(DIARY_FILE_URI, JSON.stringify(merged)).catch(console.error);
+            return merged;
+          });
+        });
+      }
+    });
+
+    return () => {
+      if (unsubscribeData) unsubscribeData();
+      unsubscribeAuth();
+    };
+  }, []);
+
+  const addEntry = async (dateKey: string, data: DiaryEntry) => {
+    let savedImageUri = data.image;
+
+    if (data.image && !data.image.startsWith(IMAGES_DIR)) {
+      try {
+        await ensureDirExists();
+        const fileName = `${dateKey}_${Date.now()}.jpg`;
+        const newPath = IMAGES_DIR + fileName;
+        await FileSystem.copyAsync({
+          from: data.image,
+          to: newPath
+        });
+        savedImageUri = newPath;
+      } catch (e) {
+        console.error("Failed to save image to permanent storage", e);
+      }
+    }
+
+    const newEntries = { ...entries, [dateKey]: { ...data, image: savedImageUri } };
     saveEntries(newEntries);
+
+    // Sync to Cloud
+    SyncService.syncEntry(dateKey, { ...data, image: savedImageUri });
   };
 
   // === CUSTOM PHOTO PICKER LOGIC ===

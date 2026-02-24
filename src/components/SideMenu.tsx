@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Platform, Alert } from 'react
 import { Settings, Check, FileText, Image as LucideImage, Sun, Moon, Cloud, Lock, User } from 'lucide-react-native';
 import { ThemeColors, ThemeColor, GridMode } from '../types';
 import { THEME_OPTIONS } from '../theme';
+import { useAuth } from '../context/AuthContext';
 
 const BASE_FONT_FAMILY = Platform.OS === 'ios' ? 'Georgia' : 'serif';
 
@@ -33,6 +34,8 @@ export const SideMenu: React.FC<SideMenuProps> = ({
   onThemeChange,
   colors
 }) => {
+
+  const { user, signInAnonymously } = useAuth();
 
   const handleProFeatureClick = () => {
     Alert.alert("Premium Feature", "Backup & Sync will be available in the Pro Plan.");
@@ -84,12 +87,28 @@ export const SideMenu: React.FC<SideMenuProps> = ({
           <View style={[styles.proSection, { backgroundColor: colors.inputBg }]}>
             <Text style={[styles.proHeader, { color: colors.subText }]}>PREMIUM FEATURES</Text>
 
-            <TouchableOpacity onPress={handleProFeatureClick} style={[styles.proItem, { backgroundColor: colors.modalBg, borderColor: colors.border, opacity: 0.7 }]}>
+            <TouchableOpacity onPress={() => {
+              if (user) {
+                Alert.alert("Backup Active", `ID: ${user.uid}\nEntries are synced to cloud.`);
+              } else {
+                Alert.alert("Enable Cloud Backup", "Activate anonymous backup?", [
+                  { text: "Cancel", style: "cancel" },
+                  {
+                    text: "Activate", onPress: async () => {
+                      try { await signInAnonymously(); Alert.alert("Success", "Backup enabled!"); }
+                      catch (e) { Alert.alert("Error", String(e)); }
+                    }
+                  }
+                ]);
+              }
+            }} style={[styles.proItem, { backgroundColor: colors.modalBg, borderColor: colors.border, opacity: user ? 1 : 0.7 }]}>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Cloud size={20} color={colors.subText} />
-                <Text style={[styles.menuText, { color: colors.subText }]}>Cloud Backup</Text>
+                <Cloud size={20} color={user ? colors.premium : colors.subText} />
+                <Text style={[styles.menuText, { color: user ? colors.text : colors.subText }]}>
+                  {user ? "Backup Active" : "Cloud Backup"}
+                </Text>
               </View>
-              <Lock size={14} color={colors.subText} />
+              {user ? <Check size={14} color={colors.premium} /> : <Lock size={14} color={colors.subText} />}
             </TouchableOpacity>
 
             <TouchableOpacity onPress={handleProFeatureClick} style={[styles.proItem, { backgroundColor: colors.modalBg, borderColor: colors.border, opacity: 0.7 }]}>

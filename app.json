@@ -17,7 +17,8 @@
       "buildNumber": "1.0.0",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
-      }
+      },
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
@@ -64,7 +65,10 @@
           "photosPermission": "Allow $(PRODUCT_NAME) to access your photos to attach them to your diary."
         }
       ],
-      "expo-asset"
+      "expo-asset",
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth",
+      "./plugins/withModularHeaders"
     ],
     "extra": {
       "eas": {

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDXVZ7jeXhwdQs77Gi48RJFrNRqz06c93Y</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1995047230</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.tadaishireina.calendardiary</string>
+	<key>PROJECT_ID</key>
+	<string>calendar-diary-9a16a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>calendar-diary-9a16a.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1995047230:ios:04837995a2e17802e8ec6f</string>
+</dict>
+</plist>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1995047230",
+    "project_id": "calendar-diary-9a16a",
+    "storage_bucket": "calendar-diary-9a16a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1995047230:android:05946d1bf6c221dce8ec6f",
+        "android_client_info": {
+          "package_name": "com.tadaishireina.calendardiary"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbtv8emlrhAXHfYLpzZb4BJiRNlTtXuqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
