@@ -10,7 +10,11 @@
     "preview": {
       "distribution": "internal"
     },
-    "production": {}
+    "production": {
+      "env": {
+        "RCT_USE_PREBUILT_RNCORE": "0"
+      }
+    }
   },
   "submit": {
     "production": {}
