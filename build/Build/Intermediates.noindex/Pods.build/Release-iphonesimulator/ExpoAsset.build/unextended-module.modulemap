@@ -1,0 +1,10 @@
+framework module ExpoAsset {
+  umbrella header "ExpoAsset-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module ExpoAsset.__Swift {
+  exclude header "ExpoAsset-Swift.h"
+}

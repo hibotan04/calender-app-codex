@@ -1,0 +1,10 @@
+framework module ExpoSharing {
+  umbrella header "ExpoSharing-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module ExpoSharing.__Swift {
+  exclude header "ExpoSharing-Swift.h"
+}

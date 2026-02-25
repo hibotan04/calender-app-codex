@@ -1,0 +1,10 @@
+framework module EXManifests {
+  umbrella header "EXManifests-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module EXManifests.__Swift {
+  exclude header "EXManifests-Swift.h"
+}

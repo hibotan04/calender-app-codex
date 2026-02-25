@@ -1,0 +1,16 @@
+{
+  "" : {
+    "const-values" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoHaptics.build/Objects-normal/x86_64/ExpoHaptics-primary.swiftconstvalues",
+    "dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoHaptics.build/Objects-normal/x86_64/ExpoHaptics-primary.d",
+    "diagnostics" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoHaptics.build/Objects-normal/x86_64/ExpoHaptics-primary.dia",
+    "emit-module-dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoHaptics.build/Objects-normal/x86_64/ExpoHaptics-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoHaptics.build/Objects-normal/x86_64/ExpoHaptics-primary-emit-module.dia",
+    "pch" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoHaptics.build/Objects-normal/x86_64/ExpoHaptics-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoHaptics.build/Objects-normal/x86_64/ExpoHaptics-primary.swiftdeps"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-haptics/ios/HapticsModule.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoHaptics.build/Objects-normal/x86_64/HapticsModule.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoHaptics.build/Objects-normal/x86_64/HapticsModule.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoHaptics.build/Objects-normal/x86_64/HapticsModule.o"
+  }
+}

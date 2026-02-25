@@ -1,0 +1,5 @@
+
+module ExpoAsset.Swift {
+  header "ExpoAsset-Swift.h"
+  requires objc
+}

@@ -1,0 +1,4 @@
+
+module ExpoKeepAwake.__Swift {
+  exclude header "ExpoKeepAwake-Swift.h"
+}

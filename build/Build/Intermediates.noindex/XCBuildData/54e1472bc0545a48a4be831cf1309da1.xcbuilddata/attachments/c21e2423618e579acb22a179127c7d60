@@ -1,0 +1,4 @@
+
+module ExpoAsset.__Swift {
+  exclude header "ExpoAsset-Swift.h"
+}

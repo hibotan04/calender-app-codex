@@ -1,0 +1,30 @@
+dependencies: \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/internal/sysinfo.cc \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Target\ Support\ Files/abseil/abseil-prefix.pch \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/internal/sysinfo.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/config.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/options.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/policy_checks.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/port.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/attributes.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/optimization.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/call_once.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/internal/invoke.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/internal/low_level_scheduling.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/internal/raw_logging.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/internal/atomic_hook.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/log_severity.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/macros.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/internal/scheduling_mode.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/internal/spinlock_wait.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/nullability.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/internal/nullability_impl.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/meta/type_traits.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/internal/spinlock.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/const_init.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/dynamic_annotations.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/internal/dynamic_annotations.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/internal/tsan_mutex_interface.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/thread_annotations.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/internal/unscaledcycleclock.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/abseil/absl/base/internal/unscaledcycleclock_config.h

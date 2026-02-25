@@ -1,0 +1,23 @@
+{
+  "version": 0,
+  "use-external-names": false,
+  "case-sensitive": false,
+  "roots": [{
+    "type": "directory",
+    "name": "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Products/Release-iphonesimulator/EXUpdatesInterface/EXUpdatesInterface.framework/Modules",
+    "contents": [{
+      "type": "file",
+      "name": "module.modulemap",
+      "external-contents": "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/EXUpdatesInterface.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    "type": "directory",
+    "name": "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Products/Release-iphonesimulator/EXUpdatesInterface/EXUpdatesInterface.framework/Headers",
+    "contents": [{
+      "type": "file",
+      "name": "EXUpdatesInterface-Swift.h",
+      "external-contents": "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/EXUpdatesInterface.build/unextended-interface-header.h",
+    }]
+  }]
+}

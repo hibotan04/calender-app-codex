@@ -9,8 +9,7 @@ import * as FileSystem from 'expo-file-system/legacy';
 import { ThemeColor, GridMode } from './src/types';
 import { THEMES } from './src/theme';
 import { useDiaryData } from './src/hooks/useDiaryData';
-import { AuthProvider } from './src/context/AuthContext';
-
+// Removed AuthContext import
 import { CalendarHeader } from './src/components/CalendarHeader';
 import { CalendarGrid } from './src/components/CalendarGrid';
 import { EntryModal } from './src/components/EntryModal';
@@ -124,87 +123,85 @@ export default function App() {
   };
 
   return (
-    <AuthProvider>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <SafeAreaProvider>
-          <StatusBar style={isDarkMode ? "light" : "dark"} backgroundColor={colors.bg} />
-          <SafeAreaView style={[styles.container, { backgroundColor: colors.bg }]} edges={['top']}>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider>
+        <StatusBar style={isDarkMode ? "light" : "dark"} backgroundColor={colors.bg} />
+        <SafeAreaView style={[styles.container, { backgroundColor: colors.bg }]} edges={['top']}>
 
-            <View style={{ flex: 1, backgroundColor: colors.bg }}>
-              <CalendarHeader currentDate={currentDate} colors={colors} />
+          <View style={{ flex: 1, backgroundColor: colors.bg }}>
+            <CalendarHeader currentDate={currentDate} colors={colors} />
 
-              <View style={{ flex: 1 }}>
-                <CalendarGrid
-                  currentDate={currentDate}
-                  entries={entries}
-                  colors={colors}
-                  gridMode={gridMode}
-                  isPhotoOnly={isPhotoOnly}
-                  onDayPress={handleDayPress}
-                  onSwipeLeft={nextMonth}
-                  onSwipeRight={prevMonth}
-                />
-              </View>
+            <View style={{ flex: 1 }}>
+              <CalendarGrid
+                currentDate={currentDate}
+                entries={entries}
+                colors={colors}
+                gridMode={gridMode}
+                isPhotoOnly={isPhotoOnly}
+                onDayPress={handleDayPress}
+                onSwipeLeft={nextMonth}
+                onSwipeRight={prevMonth}
+              />
             </View>
+          </View>
 
-            <SideMenu
-              isOpen={isSettingsOpen}
-              onToggle={() => setIsSettingsOpen(!isSettingsOpen)}
-              isDarkMode={isDarkMode}
-              onToggleDarkMode={() => setIsDarkMode(!isDarkMode)}
-              isPhotoOnly={isPhotoOnly}
-              onTogglePhotoOnly={() => setIsPhotoOnly(!isPhotoOnly)}
-              gridMode={gridMode}
-              onGridModeChange={setGridMode}
-              themeColor={themeColor}
-              onThemeChange={setThemeColor}
-              colors={colors}
-            />
+          <SideMenu
+            isOpen={isSettingsOpen}
+            onToggle={() => setIsSettingsOpen(!isSettingsOpen)}
+            isDarkMode={isDarkMode}
+            onToggleDarkMode={() => setIsDarkMode(!isDarkMode)}
+            isPhotoOnly={isPhotoOnly}
+            onTogglePhotoOnly={() => setIsPhotoOnly(!isPhotoOnly)}
+            gridMode={gridMode}
+            onGridModeChange={setGridMode}
+            themeColor={themeColor}
+            onThemeChange={setThemeColor}
+            colors={colors}
+          />
 
-            <EntryModal
-              isVisible={isModalOpen && !croppingImage}
-              onClose={() => setIsModalOpen(false)}
-              selectedDate={selectedDate}
-              text={tempText}
-              setText={setTempText}
-              image={tempImage}
-              onPickImage={() => launchDatePhotoPicker(selectedDate || "")}
-              onDeleteImage={() => setTempImage(null)}
-              onSave={handleSaveEntry}
-              colors={colors}
-              isDarkMode={isDarkMode}
+          <EntryModal
+            isVisible={isModalOpen && !croppingImage}
+            onClose={() => setIsModalOpen(false)}
+            selectedDate={selectedDate}
+            text={tempText}
+            setText={setTempText}
+            image={tempImage}
+            onPickImage={() => launchDatePhotoPicker(selectedDate || "")}
+            onDeleteImage={() => setTempImage(null)}
+            onSave={handleSaveEntry}
+            colors={colors}
+            isDarkMode={isDarkMode}
 
-              isPhotoPickerOpen={isPhotoPickerOpen}
-              onClosePhotoPicker={() => setIsPhotoPickerOpen(false)}
-              pickerLoading={pickerLoading}
-              pickerPhotos={pickerPhotos}
-              onSelectPhoto={handleSelectPhoto}
-              onLaunchStandardPicker={async () => {
-                const uri = await launchStandardPicker();
-                if (uri) setTempImage(uri);
-              }}
-            />
+            isPhotoPickerOpen={isPhotoPickerOpen}
+            onClosePhotoPicker={() => setIsPhotoPickerOpen(false)}
+            pickerLoading={pickerLoading}
+            pickerPhotos={pickerPhotos}
+            onSelectPhoto={handleSelectPhoto}
+            onLaunchStandardPicker={async () => {
+              const uri = await launchStandardPicker();
+              if (uri) setTempImage(uri);
+            }}
+          />
 
-            {/* Global Cropper Modal */}
-            <Modal
-              visible={!!croppingImage}
-              transparent={true}
-              animationType="fade"
-              onRequestClose={() => setCroppingImage(null)}
-            >
-              {croppingImage && (
-                <ImageCropper
-                  imageUri={croppingImage}
-                  onCancel={() => setCroppingImage(null)}
-                  onComplete={handleCropComplete}
-                />
-              )}
-            </Modal>
+          {/* Global Cropper Modal */}
+          <Modal
+            visible={!!croppingImage}
+            transparent={true}
+            animationType="fade"
+            onRequestClose={() => setCroppingImage(null)}
+          >
+            {croppingImage && (
+              <ImageCropper
+                imageUri={croppingImage}
+                onCancel={() => setCroppingImage(null)}
+                onComplete={handleCropComplete}
+              />
+            )}
+          </Modal>
 
-          </SafeAreaView>
-        </SafeAreaProvider>
-      </GestureHandlerRootView>
-    </AuthProvider>
+        </SafeAreaView>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
 

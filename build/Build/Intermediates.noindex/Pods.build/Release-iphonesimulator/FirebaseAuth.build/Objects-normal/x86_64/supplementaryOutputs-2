@@ -1,0 +1,12 @@
+{
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Swift/ActionCode/ActionCodeInfo.swift" : {
+    "abi-baseline-json" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/FirebaseAuth.build/Objects-normal/x86_64/FirebaseAuth.abi.json",
+    "const-values" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/FirebaseAuth.build/Objects-normal/x86_64/FirebaseAuth-primary.swiftconstvalues",
+    "dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/FirebaseAuth.build/Objects-normal/x86_64/FirebaseAuth-primary.d",
+    "diagnostics" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/FirebaseAuth.build/Objects-normal/x86_64/FirebaseAuth-primary.dia",
+    "objc-header" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/FirebaseAuth.build/Objects-normal/x86_64/FirebaseAuth-Swift.h",
+    "swiftdoc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/FirebaseAuth.build/Objects-normal/x86_64/FirebaseAuth.swiftdoc",
+    "swiftmodule" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/FirebaseAuth.build/Objects-normal/x86_64/FirebaseAuth.swiftmodule",
+    "swiftsourceinfo" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/FirebaseAuth.build/Objects-normal/x86_64/FirebaseAuth.swiftsourceinfo"
+  }
+}

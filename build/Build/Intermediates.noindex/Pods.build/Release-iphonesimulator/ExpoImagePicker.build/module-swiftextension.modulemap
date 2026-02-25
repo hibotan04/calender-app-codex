@@ -1,0 +1,5 @@
+
+module ExpoImagePicker.Swift {
+  header "ExpoImagePicker-Swift.h"
+  requires objc
+}

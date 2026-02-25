@@ -1,0 +1,4 @@
+
+module EXUpdatesInterface.__Swift {
+  exclude header "EXUpdatesInterface-Swift.h"
+}

@@ -1,0 +1,4 @@
+
+module ExpoMediaLibrary.__Swift {
+  exclude header "ExpoMediaLibrary-Swift.h"
+}

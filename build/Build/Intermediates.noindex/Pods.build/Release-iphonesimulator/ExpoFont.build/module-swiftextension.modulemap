@@ -1,0 +1,5 @@
+
+module ExpoFont.Swift {
+  header "ExpoFont-Swift.h"
+  requires objc
+}

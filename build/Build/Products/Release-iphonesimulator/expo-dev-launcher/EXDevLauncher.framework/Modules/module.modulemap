@@ -1,0 +1,11 @@
+framework module EXDevLauncher {
+  umbrella header "expo-dev-launcher-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module EXDevLauncher.Swift {
+  header "EXDevLauncher-Swift.h"
+  requires objc
+}

@@ -1,0 +1,26 @@
+{
+  "" : {
+    "const-values" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSharing.build/Objects-normal/x86_64/ExpoSharing-primary.swiftconstvalues",
+    "dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSharing.build/Objects-normal/x86_64/ExpoSharing-primary.d",
+    "diagnostics" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSharing.build/Objects-normal/x86_64/ExpoSharing-primary.dia",
+    "emit-module-dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSharing.build/Objects-normal/x86_64/ExpoSharing-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSharing.build/Objects-normal/x86_64/ExpoSharing-primary-emit-module.dia",
+    "pch" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSharing.build/Objects-normal/x86_64/ExpoSharing-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSharing.build/Objects-normal/x86_64/ExpoSharing-primary.swiftdeps"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-sharing/ios/Exceptions.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoSharing.build/Objects-normal/x86_64/Exceptions.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSharing.build/Objects-normal/x86_64/Exceptions.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSharing.build/Objects-normal/x86_64/Exceptions.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-sharing/ios/SharingModule.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoSharing.build/Objects-normal/x86_64/SharingModule.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSharing.build/Objects-normal/x86_64/SharingModule.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSharing.build/Objects-normal/x86_64/SharingModule.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-sharing/ios/SharingOptions.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoSharing.build/Objects-normal/x86_64/SharingOptions.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSharing.build/Objects-normal/x86_64/SharingOptions.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSharing.build/Objects-normal/x86_64/SharingOptions.o"
+  }
+}

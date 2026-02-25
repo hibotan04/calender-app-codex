@@ -1,0 +1,4 @@
+
+module ExpoSharing.__Swift {
+  exclude header "ExpoSharing-Swift.h"
+}

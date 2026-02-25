@@ -1,0 +1,34 @@
+dependencies: \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/SDWebImage.build/module.modulemap \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDAnimatedImageView+WebCache.m \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Target\ Support\ Files/SDWebImage/SDWebImage-prefix.pch \
+  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/UIKit.framework/Modules/module.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/Foundation.framework/Modules/module.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/include/DarwinFoundation1.modulemap \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDAnimatedImageView+WebCache.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDAnimatedImageView.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageCompat.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDAnimatedImage.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDImageCoder.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/NSData+ImageContentType.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDImageFrame.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDAnimatedImagePlayer.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDImageTransformer.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/UIImage+Transform.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageManager.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageOperation.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDImageCacheDefine.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageDefine.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDImageLoader.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageCacheKeyFilter.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageCacheSerializer.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageOptionsProcessor.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/UIView+WebCache.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageTransition.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDImageCache.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDImageCacheConfig.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDMemoryCache.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDDiskCache.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/SDWebImageIndicator.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/UIView+WebCacheOperation.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/SDWebImage/SDWebImage/Core/UIView+WebCacheState.h

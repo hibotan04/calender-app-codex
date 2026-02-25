@@ -1,0 +1,11 @@
+framework module ExpoKeepAwake {
+  umbrella header "ExpoKeepAwake-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module ExpoKeepAwake.Swift {
+  header "ExpoKeepAwake-Swift.h"
+  requires objc
+}

@@ -1,0 +1,5 @@
+
+module ExpoSharing.Swift {
+  header "ExpoSharing-Swift.h"
+  requires objc
+}

@@ -1,0 +1,4 @@
+
+module ExpoFileSystem.__Swift {
+  exclude header "ExpoFileSystem-Swift.h"
+}

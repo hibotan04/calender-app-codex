@@ -1,0 +1,11 @@
+framework module EXUpdatesInterface {
+  umbrella header "EXUpdatesInterface-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module EXUpdatesInterface.Swift {
+  header "EXUpdatesInterface-Swift.h"
+  requires objc
+}

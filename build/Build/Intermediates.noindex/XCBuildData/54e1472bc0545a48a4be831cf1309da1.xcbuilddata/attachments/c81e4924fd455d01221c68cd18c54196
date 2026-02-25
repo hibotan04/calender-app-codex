@@ -1,0 +1,4 @@
+
+module ExpoPrint.__Swift {
+  exclude header "ExpoPrint-Swift.h"
+}

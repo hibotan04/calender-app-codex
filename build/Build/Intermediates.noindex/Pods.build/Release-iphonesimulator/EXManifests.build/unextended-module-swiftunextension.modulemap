@@ -1,0 +1,4 @@
+
+module EXManifests.__Swift {
+  exclude header "EXManifests-Swift.h"
+}

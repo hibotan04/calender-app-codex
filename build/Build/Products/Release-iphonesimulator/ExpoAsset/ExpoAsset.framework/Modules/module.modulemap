@@ -1,0 +1,11 @@
+framework module ExpoAsset {
+  umbrella header "ExpoAsset-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module ExpoAsset.Swift {
+  header "ExpoAsset-Swift.h"
+  requires objc
+}

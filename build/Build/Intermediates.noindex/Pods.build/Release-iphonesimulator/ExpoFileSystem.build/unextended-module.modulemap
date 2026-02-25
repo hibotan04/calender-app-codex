@@ -1,0 +1,10 @@
+framework module ExpoFileSystem {
+  umbrella header "ExpoFileSystem-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module ExpoFileSystem.__Swift {
+  exclude header "ExpoFileSystem-Swift.h"
+}

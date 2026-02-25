@@ -1,0 +1,5 @@
+
+module ExpoMediaLibrary.Swift {
+  header "ExpoMediaLibrary-Swift.h"
+  requires objc
+}

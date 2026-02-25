@@ -1,0 +1,4 @@
+
+module EXConstants.__Swift {
+  exclude header "EXConstants-Swift.h"
+}

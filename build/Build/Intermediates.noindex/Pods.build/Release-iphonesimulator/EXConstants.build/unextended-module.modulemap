@@ -1,0 +1,10 @@
+framework module EXConstants {
+  umbrella header "EXConstants-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module EXConstants.__Swift {
+  exclude header "EXConstants-Swift.h"
+}

@@ -1,0 +1,5 @@
+
+module ExpoHaptics.Swift {
+  header "ExpoHaptics-Swift.h"
+  requires objc
+}

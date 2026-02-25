@@ -1,0 +1,4 @@
+
+module ExpoHaptics.__Swift {
+  exclude header "ExpoHaptics-Swift.h"
+}

@@ -65,19 +65,7 @@
           "photosPermission": "Allow $(PRODUCT_NAME) to access your photos to attach them to your diary."
         }
       ],
-      "expo-asset",
-      "@react-native-firebase/app",
-      "@react-native-firebase/auth",
-      [
-        "expo-build-properties",
-        {
-          "ios": {
-            "useFrameworks": "static"
-          }
-        }
-      ],
-      "./plugins/withModularHeaders.js",
-      "./plugins/withGrpcWorkaround.js"
+      "expo-asset"
     ],
     "extra": {
       "eas": {

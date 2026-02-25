@@ -1,0 +1,5 @@
+
+module ExpoImage.Swift {
+  header "ExpoImage-Swift.h"
+  requires objc
+}

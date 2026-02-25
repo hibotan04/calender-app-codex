@@ -1,0 +1,15 @@
+
+
+    >>>>> Generating codegen artifacts
+
+    
+ output has been written to /Users/tadaishireina/アプリ開発/calendar-diary-app/ios:
+Podfile
+Podfile.lock
+Podfile.properties.json
+Pods
+build
+calendardiaryapp
+calendardiaryapp.xcodeproj
+calendardiaryapp.xcworkspace
+Done.

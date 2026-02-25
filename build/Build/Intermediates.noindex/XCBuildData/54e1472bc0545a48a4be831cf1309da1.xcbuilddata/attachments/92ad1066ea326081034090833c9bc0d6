@@ -1,0 +1,5 @@
+
+module ExpoPrint.Swift {
+  header "ExpoPrint-Swift.h"
+  requires objc
+}

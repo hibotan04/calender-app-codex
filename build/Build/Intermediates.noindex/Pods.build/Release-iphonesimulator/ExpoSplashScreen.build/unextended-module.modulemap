@@ -1,0 +1,10 @@
+framework module ExpoSplashScreen {
+  umbrella header "ExpoSplashScreen-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module ExpoSplashScreen.__Swift {
+  exclude header "ExpoSplashScreen-Swift.h"
+}

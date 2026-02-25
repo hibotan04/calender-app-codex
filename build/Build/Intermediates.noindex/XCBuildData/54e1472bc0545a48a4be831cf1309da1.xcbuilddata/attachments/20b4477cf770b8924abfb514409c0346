@@ -1,0 +1,4 @@
+
+module ExpoSplashScreen.__Swift {
+  exclude header "ExpoSplashScreen-Swift.h"
+}

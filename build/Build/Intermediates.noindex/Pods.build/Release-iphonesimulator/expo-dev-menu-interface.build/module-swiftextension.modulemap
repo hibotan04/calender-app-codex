@@ -1,0 +1,5 @@
+
+module EXDevMenuInterface.Swift {
+  header "EXDevMenuInterface-Swift.h"
+  requires objc
+}

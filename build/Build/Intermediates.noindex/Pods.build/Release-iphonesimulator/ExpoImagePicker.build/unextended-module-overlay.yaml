@@ -1,0 +1,23 @@
+{
+  "version": 0,
+  "use-external-names": false,
+  "case-sensitive": false,
+  "roots": [{
+    "type": "directory",
+    "name": "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Products/Release-iphonesimulator/ExpoImagePicker/ExpoImagePicker.framework/Modules",
+    "contents": [{
+      "type": "file",
+      "name": "module.modulemap",
+      "external-contents": "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoImagePicker.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    "type": "directory",
+    "name": "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Products/Release-iphonesimulator/ExpoImagePicker/ExpoImagePicker.framework/Headers",
+    "contents": [{
+      "type": "file",
+      "name": "ExpoImagePicker-Swift.h",
+      "external-contents": "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoImagePicker.build/unextended-interface-header.h",
+    }]
+  }]
+}

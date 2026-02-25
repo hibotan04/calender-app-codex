@@ -1,0 +1,4 @@
+
+module ExpoFont.__Swift {
+  exclude header "ExpoFont-Swift.h"
+}

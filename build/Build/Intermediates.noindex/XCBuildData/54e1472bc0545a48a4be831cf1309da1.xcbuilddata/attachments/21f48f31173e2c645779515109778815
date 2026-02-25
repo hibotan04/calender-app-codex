@@ -1,0 +1,23 @@
+{
+  "version": 0,
+  "use-external-names": false,
+  "case-sensitive": false,
+  "roots": [{
+    "type": "directory",
+    "name": "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Products/Release-iphonesimulator/ExpoPrint/ExpoPrint.framework/Modules",
+    "contents": [{
+      "type": "file",
+      "name": "module.modulemap",
+      "external-contents": "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoPrint.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    "type": "directory",
+    "name": "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Products/Release-iphonesimulator/ExpoPrint/ExpoPrint.framework/Headers",
+    "contents": [{
+      "type": "file",
+      "name": "ExpoPrint-Swift.h",
+      "external-contents": "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoPrint.build/unextended-interface-header.h",
+    }]
+  }]
+}

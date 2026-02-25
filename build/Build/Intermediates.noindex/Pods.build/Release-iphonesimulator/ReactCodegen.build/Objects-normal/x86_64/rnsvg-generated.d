@@ -1,0 +1,41 @@
+dependencies: \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/build/generated/ios/rnsvg/rnsvg-generated.mm \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Target\ Support\ Files/ReactCodegen/ReactCodegen-prefix.pch \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/build/generated/ios/rnsvg/rnsvg.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/RCTRequired/RCTRequired/RCTRequired.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/RCTTypeSafety/RCTTypeSafety/RCTConvertHelpers.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/FBLazyVector/FBLazyVector/FBLazyVector.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/FBLazyVector/FBLazyVector/FBLazyIterator.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/RCTTypeSafety/RCTTypeSafety/RCTTypedModuleConstants.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core/React/RCTBridgeModule.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core/React/RCTDefines.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core/React/RCTInspectorDevServerHelper.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core/React/RCTPackagerConnection.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core/React/RCTJSThread.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/RCTDeprecation/RCTDeprecation.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core/React/RCTBundleManager.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core/React/RCTCxxConvert.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core/React/RCTManagedPointer.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-NativeModulesApple/ReactCommon/RCTTurboModule.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core/React/RCTBridge.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core/React/RCTBridgeDelegate.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core/React/RCTJavaScriptLoader.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core/React/RCTBridgeModuleDecorator.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core/React/RCTFrameUpdate.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core/React/RCTInvalidating.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core/React/RCTBridgeConstants.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core/React/RCTConstants.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core/React/RCTModuleMethod.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core/React/RCTBridgeMethod.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core/React/RCTNullability.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-callinvoker/ReactCommon/CallInvoker.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-callinvoker/ReactCommon/SchedulerPriority.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-Core-prebuilt/ReactCommon/TurboModule.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-jsi/jsi/jsi.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/React-jsi/jsi/jsi-inl.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/ReactCommon/react/bridging/EventEmitter.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/ReactCommon/react/bridging/Function.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/ReactCommon/react/bridging/Base.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/ReactCommon/react/bridging/Convert.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/ReactCommon/react/bridging/CallbackWrapper.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/Headers/Public/ReactCommon/react/bridging/LongLivedObject.h

@@ -1,0 +1,4 @@
+
+module ExpoImage.__Swift {
+  exclude header "ExpoImage-Swift.h"
+}

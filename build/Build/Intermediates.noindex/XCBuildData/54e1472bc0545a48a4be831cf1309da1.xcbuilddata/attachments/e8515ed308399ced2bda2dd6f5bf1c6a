@@ -1,0 +1,21 @@
+{
+  "" : {
+    "const-values" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/EXUpdatesInterface.build/Objects-normal/x86_64/EXUpdatesInterface-primary.swiftconstvalues",
+    "dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/EXUpdatesInterface.build/Objects-normal/x86_64/EXUpdatesInterface-primary.d",
+    "diagnostics" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/EXUpdatesInterface.build/Objects-normal/x86_64/EXUpdatesInterface-primary.dia",
+    "emit-module-dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/EXUpdatesInterface.build/Objects-normal/x86_64/EXUpdatesInterface-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/EXUpdatesInterface.build/Objects-normal/x86_64/EXUpdatesInterface-primary-emit-module.dia",
+    "pch" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/EXUpdatesInterface.build/Objects-normal/x86_64/EXUpdatesInterface-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/EXUpdatesInterface.build/Objects-normal/x86_64/EXUpdatesInterface-primary.swiftdeps"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-updates-interface/ios/EXUpdatesInterface/UpdatesControllerRegistry.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/EXUpdatesInterface.build/Objects-normal/x86_64/UpdatesControllerRegistry.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/EXUpdatesInterface.build/Objects-normal/x86_64/UpdatesControllerRegistry.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/EXUpdatesInterface.build/Objects-normal/x86_64/UpdatesControllerRegistry.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-updates-interface/ios/EXUpdatesInterface/UpdatesExternalInterface.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/EXUpdatesInterface.build/Objects-normal/x86_64/UpdatesExternalInterface.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/EXUpdatesInterface.build/Objects-normal/x86_64/UpdatesExternalInterface.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/EXUpdatesInterface.build/Objects-normal/x86_64/UpdatesExternalInterface.o"
+  }
+}

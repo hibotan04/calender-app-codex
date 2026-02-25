@@ -61,9 +61,20 @@ target 'calendardiaryapp' do
   
 
   # Allow non-modular includes in all targets to fix RNFBApp / React-Core header issues
+  # AND disable strict C99 implicit int errors enforced by newer Xcode versions
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       config.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
+      
+      # Suppress implicit int and warning-as-error safely
+      current_cflags = config.build_settings['OTHER_CFLAGS'] || '$(inherited)'
+      unless current_cflags.include?('-Wno-error=implicit-int')
+        if current_cflags.is_a?(Array)
+          config.build_settings['OTHER_CFLAGS'] = current_cflags + ['-Wno-error=implicit-int', '-Wno-implicit-int']
+        else
+          config.build_settings['OTHER_CFLAGS'] = current_cflags + ' -Wno-error=implicit-int -Wno-implicit-int'
+        end
+      end
     end
     
     # Specific workaround for Firebase Static Frameworks linking issue (gRPC)

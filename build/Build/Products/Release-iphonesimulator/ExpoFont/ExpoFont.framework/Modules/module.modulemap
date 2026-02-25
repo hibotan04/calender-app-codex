@@ -1,0 +1,11 @@
+framework module ExpoFont {
+  umbrella header "ExpoFont-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module ExpoFont.Swift {
+  header "ExpoFont-Swift.h"
+  requires objc
+}

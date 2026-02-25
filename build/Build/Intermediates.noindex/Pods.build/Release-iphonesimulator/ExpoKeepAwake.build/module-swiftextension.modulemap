@@ -1,0 +1,5 @@
+
+module ExpoKeepAwake.Swift {
+  header "ExpoKeepAwake-Swift.h"
+  requires objc
+}

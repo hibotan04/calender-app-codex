@@ -1,0 +1,16 @@
+{
+  "" : {
+    "const-values" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoKeepAwake.build/Objects-normal/x86_64/ExpoKeepAwake-primary.swiftconstvalues",
+    "dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoKeepAwake.build/Objects-normal/x86_64/ExpoKeepAwake-primary.d",
+    "diagnostics" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoKeepAwake.build/Objects-normal/x86_64/ExpoKeepAwake-primary.dia",
+    "emit-module-dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoKeepAwake.build/Objects-normal/x86_64/ExpoKeepAwake-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoKeepAwake.build/Objects-normal/x86_64/ExpoKeepAwake-primary-emit-module.dia",
+    "pch" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoKeepAwake.build/Objects-normal/x86_64/ExpoKeepAwake-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoKeepAwake.build/Objects-normal/x86_64/ExpoKeepAwake-primary.swiftdeps"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-keep-awake/ios/KeepAwakeModule.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoKeepAwake.build/Objects-normal/x86_64/KeepAwakeModule.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoKeepAwake.build/Objects-normal/x86_64/KeepAwakeModule.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoKeepAwake.build/Objects-normal/x86_64/KeepAwakeModule.o"
+  }
+}

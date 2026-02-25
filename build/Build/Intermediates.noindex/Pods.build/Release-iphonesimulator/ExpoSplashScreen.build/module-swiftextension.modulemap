@@ -1,0 +1,5 @@
+
+module ExpoSplashScreen.Swift {
+  header "ExpoSplashScreen-Swift.h"
+  requires objc
+}

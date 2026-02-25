@@ -1,0 +1,46 @@
+{
+  "" : {
+    "const-values" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/ExpoFont-primary.swiftconstvalues",
+    "dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/ExpoFont-primary.d",
+    "diagnostics" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/ExpoFont-primary.dia",
+    "emit-module-dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/ExpoFont-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/ExpoFont-primary-emit-module.dia",
+    "pch" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/ExpoFont-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/ExpoFont-primary.swiftdeps"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-font/ios/FontExceptions.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/FontExceptions.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/FontExceptions.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/FontExceptions.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-font/ios/FontFamilyAliasManager.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/FontFamilyAliasManager.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/FontFamilyAliasManager.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/FontFamilyAliasManager.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-font/ios/FontLoaderModule.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/FontLoaderModule.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/FontLoaderModule.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/FontLoaderModule.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-font/ios/FontUtils.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/FontUtils.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/FontUtils.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/FontUtils.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-font/ios/FontUtilsModule.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/FontUtilsModule.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/FontUtilsModule.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/FontUtilsModule.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-font/ios/FontUtilsRecords.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/FontUtilsRecords.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/FontUtilsRecords.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/FontUtilsRecords.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-font/ios/UIFont+FontFamilyAlias.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/UIFont+FontFamilyAlias.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/UIFont+FontFamilyAlias.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoFont.build/Objects-normal/x86_64/UIFont+FontFamilyAlias.o"
+  }
+}

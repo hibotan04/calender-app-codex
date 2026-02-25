@@ -1,0 +1,24 @@
+dependencies: \
+  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/include/Darwin.modulemap \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/FirebaseCore.build/module.modulemap \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/FirebaseCore/FirebaseCore/Sources/FIRApp.m \
+  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/UIKit.framework/Modules/module.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/Foundation.framework/Modules/module.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/include/ObjectiveC.modulemap \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIRApp.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/FirebaseCore/FirebaseCore/Sources/FIRAnalyticsConfiguration.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/FirebaseCore/FirebaseCore/Sources/FIRBundleUtil.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/FirebaseCore/FirebaseCore/Sources/FIRComponentContainerInternal.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/FirebaseCore/FirebaseCore/Extension/FIRComponentContainer.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/FirebaseCore/FirebaseCore/Extension/FIRLibrary.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/FirebaseCore/FirebaseCore/Sources/FIRConfigurationInternal.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIRConfiguration.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIRLoggerLevel.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/FirebaseCore/FirebaseCore/Sources/FIRFirebaseUserAgent.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/FirebaseCore/FirebaseCore/Extension/FIRAppInternal.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/FirebaseCore/FirebaseCore/Extension/FIRHeartbeatLogger.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/FirebaseCore/FirebaseCore/Extension/FIRLogger.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/FirebaseCore/FirebaseCore/Sources/FIROptionsInternal.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIROptions.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIRVersion.h \
+  /Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/GoogleUtilities.build/module.modulemap

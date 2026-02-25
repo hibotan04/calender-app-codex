@@ -1,0 +1,10 @@
+framework module ExpoFont {
+  umbrella header "ExpoFont-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module ExpoFont.__Swift {
+  exclude header "ExpoFont-Swift.h"
+}

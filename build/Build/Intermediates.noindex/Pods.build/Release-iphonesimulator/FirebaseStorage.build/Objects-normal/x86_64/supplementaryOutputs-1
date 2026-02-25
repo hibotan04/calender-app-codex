@@ -1,0 +1,12 @@
+{
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/AsyncAwait.swift" : {
+    "abi-baseline-json" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/FirebaseStorage.build/Objects-normal/x86_64/FirebaseStorage.abi.json",
+    "const-values" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/FirebaseStorage.build/Objects-normal/x86_64/FirebaseStorage-primary.swiftconstvalues",
+    "dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/FirebaseStorage.build/Objects-normal/x86_64/FirebaseStorage-primary.d",
+    "diagnostics" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/FirebaseStorage.build/Objects-normal/x86_64/FirebaseStorage-primary.dia",
+    "objc-header" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/FirebaseStorage.build/Objects-normal/x86_64/FirebaseStorage-Swift.h",
+    "swiftdoc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/FirebaseStorage.build/Objects-normal/x86_64/FirebaseStorage.swiftdoc",
+    "swiftmodule" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/FirebaseStorage.build/Objects-normal/x86_64/FirebaseStorage.swiftmodule",
+    "swiftsourceinfo" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/FirebaseStorage.build/Objects-normal/x86_64/FirebaseStorage.swiftsourceinfo"
+  }
+}

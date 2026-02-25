@@ -1,0 +1,5 @@
+
+module EXConstants.Swift {
+  header "EXConstants-Swift.h"
+  requires objc
+}

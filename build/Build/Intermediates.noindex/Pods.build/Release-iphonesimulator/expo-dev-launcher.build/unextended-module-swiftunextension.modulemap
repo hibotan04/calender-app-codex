@@ -1,0 +1,4 @@
+
+module EXDevLauncher.__Swift {
+  exclude header "EXDevLauncher-Swift.h"
+}

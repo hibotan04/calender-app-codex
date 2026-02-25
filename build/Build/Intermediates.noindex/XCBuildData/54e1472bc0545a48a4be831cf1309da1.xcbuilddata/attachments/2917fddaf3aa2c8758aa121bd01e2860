@@ -1,0 +1,5 @@
+
+module EXDevLauncher.Swift {
+  header "EXDevLauncher-Swift.h"
+  requires objc
+}

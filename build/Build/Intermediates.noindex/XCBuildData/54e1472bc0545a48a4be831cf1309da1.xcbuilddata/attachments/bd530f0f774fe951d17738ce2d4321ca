@@ -1,0 +1,5 @@
+
+module EXManifests.Swift {
+  header "EXManifests-Swift.h"
+  requires objc
+}

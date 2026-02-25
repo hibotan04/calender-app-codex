@@ -1,0 +1,4 @@
+
+module EXDevMenuInterface.__Swift {
+  exclude header "EXDevMenuInterface-Swift.h"
+}

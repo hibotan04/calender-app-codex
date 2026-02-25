@@ -1,0 +1,121 @@
+{
+  "" : {
+    "const-values" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/ExpoMediaLibrary-primary.swiftconstvalues",
+    "dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/ExpoMediaLibrary-primary.d",
+    "diagnostics" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/ExpoMediaLibrary-primary.dia",
+    "emit-module-dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/ExpoMediaLibrary-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/ExpoMediaLibrary-primary-emit-module.dia",
+    "pch" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/ExpoMediaLibrary-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/ExpoMediaLibrary-primary.swiftdeps"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/MediaLibraryExceptions.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/MediaLibraryExceptions.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/MediaLibraryExceptions.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/MediaLibraryExceptions.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/MediaLibraryModule.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/MediaLibraryModule.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/MediaLibraryModule.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/MediaLibraryModule.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/MediaLibraryRecords.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/MediaLibraryRecords.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/MediaLibraryRecords.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/MediaLibraryRecords.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/MediaLibraryUtilities.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/MediaLibraryUtilities.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/MediaLibraryUtilities.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/MediaLibraryUtilities.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/PhotoLibraryObserver.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/PhotoLibraryObserver.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/PhotoLibraryObserver.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/PhotoLibraryObserver.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/Requesters.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/Requesters.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/Requesters.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/Requesters.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/SaveToLibraryDelegate.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/SaveToLibraryDelegate.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/SaveToLibraryDelegate.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/SaveToLibraryDelegate.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/TestSupport.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/TestSupport.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/TestSupport.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/TestSupport.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/next/MediaLibraryNextModule.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/MediaLibraryNextModule.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/MediaLibraryNextModule.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/MediaLibraryNextModule.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/next/exceptions/Exceptions.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/Exceptions.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/Exceptions.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/Exceptions.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/next/extensions/PHAssetExtensions.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/PHAssetExtensions.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/PHAssetExtensions.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/PHAssetExtensions.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/next/extensions/PHImageManagerExtensions.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/PHImageManagerExtensions.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/PHImageManagerExtensions.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/PHImageManagerExtensions.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/next/extensions/PHPhotoLibraryExtensions.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/PHPhotoLibraryExtensions.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/PHPhotoLibraryExtensions.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/PHPhotoLibraryExtensions.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/next/objects/Query/AssetField.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/AssetField.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/AssetField.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/AssetField.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/next/objects/Query/PredicateBuilder.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/PredicateBuilder.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/PredicateBuilder.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/PredicateBuilder.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/next/objects/Query/Query.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/Query.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/Query.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/Query.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/next/objects/Query/SortDescriptor.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/SortDescriptor.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/SortDescriptor.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/SortDescriptor.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/next/objects/album/Album.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/Album.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/Album.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/Album.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/next/objects/asset/Asset.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/Asset.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/Asset.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/Asset.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/next/objects/asset/MediaType.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/MediaType.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/MediaType.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/MediaType.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/next/repository/AssetCollectionRepository.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/AssetCollectionRepository.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/AssetCollectionRepository.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/AssetCollectionRepository.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-media-library/ios/next/repository/AssetRepository.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/AssetRepository.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/AssetRepository.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoMediaLibrary.build/Objects-normal/x86_64/AssetRepository.o"
+  }
+}

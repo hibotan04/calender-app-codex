@@ -1,0 +1,10 @@
+framework module ExpoHaptics {
+  umbrella header "ExpoHaptics-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module ExpoHaptics.__Swift {
+  exclude header "ExpoHaptics-Swift.h"
+}

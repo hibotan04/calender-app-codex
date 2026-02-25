@@ -1,0 +1,5 @@
+- [/] Hide Pro and Sync features
+  - [x] Locate Settings screen
+  - [x] Hide Pro button
+  - [x] Hide Account/Sync button
+  - [x] Check for other exposed premium features and hide them

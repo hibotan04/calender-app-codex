@@ -1,0 +1,5 @@
+
+module ExpoFileSystem.Swift {
+  header "ExpoFileSystem-Swift.h"
+  requires objc
+}

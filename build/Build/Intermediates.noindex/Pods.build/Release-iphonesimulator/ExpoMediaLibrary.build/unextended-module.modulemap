@@ -1,0 +1,10 @@
+framework module ExpoMediaLibrary {
+  umbrella header "ExpoMediaLibrary-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module ExpoMediaLibrary.__Swift {
+  exclude header "ExpoMediaLibrary-Swift.h"
+}

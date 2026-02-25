@@ -1,0 +1,11 @@
+framework module ExpoImage {
+  umbrella header "ExpoImage-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module ExpoImage.Swift {
+  header "ExpoImage-Swift.h"
+  requires objc
+}

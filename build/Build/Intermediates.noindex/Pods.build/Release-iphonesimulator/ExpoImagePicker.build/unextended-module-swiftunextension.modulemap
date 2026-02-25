@@ -1,0 +1,4 @@
+
+module ExpoImagePicker.__Swift {
+  exclude header "ExpoImagePicker-Swift.h"
+}

@@ -1,0 +1,31 @@
+{
+  "" : {
+    "const-values" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSplashScreen.build/Objects-normal/x86_64/ExpoSplashScreen-primary.swiftconstvalues",
+    "dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSplashScreen.build/Objects-normal/x86_64/ExpoSplashScreen-primary.d",
+    "diagnostics" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSplashScreen.build/Objects-normal/x86_64/ExpoSplashScreen-primary.dia",
+    "emit-module-dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSplashScreen.build/Objects-normal/x86_64/ExpoSplashScreen-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSplashScreen.build/Objects-normal/x86_64/ExpoSplashScreen-primary-emit-module.dia",
+    "pch" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSplashScreen.build/Objects-normal/x86_64/ExpoSplashScreen-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSplashScreen.build/Objects-normal/x86_64/ExpoSplashScreen-primary.swiftdeps"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-splash-screen/ios/SplashScreenAppDelegateSubscriber.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoSplashScreen.build/Objects-normal/x86_64/SplashScreenAppDelegateSubscriber.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSplashScreen.build/Objects-normal/x86_64/SplashScreenAppDelegateSubscriber.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSplashScreen.build/Objects-normal/x86_64/SplashScreenAppDelegateSubscriber.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-splash-screen/ios/SplashScreenManager.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoSplashScreen.build/Objects-normal/x86_64/SplashScreenManager.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSplashScreen.build/Objects-normal/x86_64/SplashScreenManager.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSplashScreen.build/Objects-normal/x86_64/SplashScreenManager.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-splash-screen/ios/SplashScreenModule.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoSplashScreen.build/Objects-normal/x86_64/SplashScreenModule.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSplashScreen.build/Objects-normal/x86_64/SplashScreenModule.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSplashScreen.build/Objects-normal/x86_64/SplashScreenModule.o"
+  },
+  "/Users/tadaishireina/アプリ開発/calendar-diary-app/node_modules/expo-splash-screen/ios/SplashScreenOptions.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphonesimulator/ExpoSplashScreen.build/Objects-normal/x86_64/SplashScreenOptions.o",
+    "llvm-bc" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSplashScreen.build/Objects-normal/x86_64/SplashScreenOptions.bc",
+    "object" : "/Users/tadaishireina/アプリ開発/calendar-diary-app/build/Build/Intermediates.noindex/Pods.build/Release-iphonesimulator/ExpoSplashScreen.build/Objects-normal/x86_64/SplashScreenOptions.o"
+  }
+}

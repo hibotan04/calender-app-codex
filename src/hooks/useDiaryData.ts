@@ -4,8 +4,6 @@ import * as FileSystem from 'expo-file-system/legacy';
 import * as MediaLibrary from 'expo-media-library';
 import * as ImagePicker from 'expo-image-picker';
 import { DiaryEntry } from '../types';
-import { SyncService } from '../services/SyncService';
-import auth from '@react-native-firebase/auth';
 
 const DIARY_FILE_URI = FileSystem.documentDirectory + 'diary_entries_v2.json';
 const IMAGES_DIR = FileSystem.documentDirectory + 'images/';
@@ -53,31 +51,7 @@ export const useDiaryData = () => {
     }
   };
 
-  // Subscribe to Cloud Updates
-  useEffect(() => {
-    let unsubscribeData: (() => void) | undefined;
-
-    const unsubscribeAuth = auth().onAuthStateChanged((user) => {
-      if (unsubscribeData) unsubscribeData(); // Unsub previous user
-
-      if (user) {
-        unsubscribeData = SyncService.subscribeToEntries((cloudEntries) => {
-          setEntries(prev => {
-            const merged = { ...prev, ...cloudEntries };
-            // Do NOT call saveEntries here to avoid state loop if not careful, 
-            // but writing to file is essential for offline cache.
-            FileSystem.writeAsStringAsync(DIARY_FILE_URI, JSON.stringify(merged)).catch(console.error);
-            return merged;
-          });
-        });
-      }
-    });
-
-    return () => {
-      if (unsubscribeData) unsubscribeData();
-      unsubscribeAuth();
-    };
-  }, []);
+  // No Cloud Sync needed for standalone app
 
   const addEntry = async (dateKey: string, data: DiaryEntry) => {
     let savedImageUri = data.image;
@@ -99,9 +73,6 @@ export const useDiaryData = () => {
 
     const newEntries = { ...entries, [dateKey]: { ...data, image: savedImageUri } };
     saveEntries(newEntries);
-
-    // Sync to Cloud
-    SyncService.syncEntry(dateKey, { ...data, image: savedImageUri });
   };
 
   // === CUSTOM PHOTO PICKER LOGIC ===
